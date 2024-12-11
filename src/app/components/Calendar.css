@@ -1,26 +1,187 @@
-/* styles/Calendar.css */
-.calendar-container {
-    padding: 20px;
-    text-align: center;
+/* Dark Theme Calendar Component Styles */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+  
+  .calendar-header button {
+    background-color: #4888d4;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .calendar-header button:hover {
+    background-color: #003880;
   }
   
   .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    grid-gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
   }
   
-  .calendar-day {
+  .calendar-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    font-size: 1.1rem;
+    background-color: #333333;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+  }
+  
+  .calendar-cell:hover {
+    background-color: #444444;
+  }
+  
+  .calendar-cell.empty {
+    background-color: transparent;
+  }
+  
+  .calendar-cell span {
+    font-weight: bold;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0;
     width: 30px;
     height: 30px;
-    border: 1px solid #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
   }
   
-  h2 {
+  .modal-close:hover {
+    color: #4888d4;
+  }
+  
+  .modal h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+  
+  .modal input {
+    width: 250px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #444444;
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .modal-add-button {
+    background-color: #4888d4;
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-add-button:hover {
+    background-color: #003880;
+  }
+  
+  .event-list-container {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .event-list-container h3 {
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
+  
+  .event-list {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1.1rem;
+  }
+  
+  .event-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333333;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+  }
+  
+  .event-list-item strong {
+    font-weight: bold;
+  }
+  
+  .delete-event-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .delete-event-button:hover {
+    background-color: darkred;
   }
   
