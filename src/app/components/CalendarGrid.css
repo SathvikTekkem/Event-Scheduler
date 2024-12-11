@@ -12,7 +12,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 120px;
+    width: 120px;
     font-size: 1.1rem;
     background-color: #333333;
     border-radius: 5px;
