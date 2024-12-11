@@ -19,9 +19,15 @@ body {
     font-size: 1.2rem;
     color: #ffffff;
   }
+  .calendar-month-title{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 120px;
+  }
   
   .calendar-header button {
-    background-color: #4888d4;
+    background-color: #003880;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -33,7 +39,7 @@ body {
   }
   
   .calendar-header button:hover {
-    background-color: #003880;
+    background-color: #00285C;
   }
   
   .calendar-grid {
@@ -71,36 +77,17 @@ body {
   
   .modal {
     position: fixed;
-    top: 50%;
+    top: 57%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #1e1e1e;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
-  }
-  
-  .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-  }
-  
-  .modal-close:hover {
-    color: #4888d4;
+    width: 300px; /* You can adjust this width as per your design needs */
   }
   
   .modal h3 {
@@ -110,7 +97,7 @@ body {
   }
   
   .modal input {
-    width: 250px;
+    width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #444444;
@@ -120,9 +107,7 @@ body {
     font-size: 1rem;
   }
   
-  .modal-add-button {
-    background-color: #4888d4;
-    width: 100%;
+  .modal-btn {
     color: white;
     border: none;
     padding: 10px 20px;
@@ -131,10 +116,32 @@ body {
     border-radius: 5px;
     margin-top: 10px;
     transition: background-color 0.3s ease;
+    
   }
   
-  .modal-add-button:hover {
+  .add-event-btn {
     background-color: #003880;
+    width: 100%;
+  }
+  
+  .add-event-btn:hover {
+    background-color: #00285C;
+  }
+  
+  /* Positioning the Close Button at Top Right */
+  .close-modal-btn {
+    position: absolute;
+    top: 10px; /* distance from the top */
+    right: 10px; /* distance from the right */
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .close-modal-btn:hover {
+    color: #ff0000;
   }
   
   .event-list-container {

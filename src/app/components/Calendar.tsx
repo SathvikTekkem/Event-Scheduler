@@ -34,9 +34,17 @@ const Calendar: React.FC = () => {
     setDate(new Date(date.getFullYear() + 1, date.getMonth(), 1));
   };
 
+  // Function to strip time and ensure the date comparison works correctly
+  const getDateWithoutTime = (date: Date): string => {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // months are 0-indexed
+    const day = date.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`; // returns YYYY-MM-DD
+  };
+
   const handleDateClick = (day: number) => {
     const clickedDate = new Date(date.getFullYear(), date.getMonth(), day);
-    setSelectedDate(clickedDate.toISOString().split("T")[0]); // Format: YYYY-MM-DD
+    setSelectedDate(getDateWithoutTime(clickedDate));
   };
 
   const handleAddEvent = () => {
@@ -48,7 +56,7 @@ const Calendar: React.FC = () => {
   };
 
   const handleDeleteEvent = (date: string) => {
-    setEvents(events.filter(event => event.date !== date));
+    setEvents(events.filter((event) => event.date !== date));
   };
 
   const renderDays = () => {
@@ -61,9 +69,17 @@ const Calendar: React.FC = () => {
     }
 
     for (let i = 1; i <= daysInMonth; i++) {
+      // Format current day
+      const currentDayDate = new Date(date.getFullYear(), date.getMonth(), i);
+      const currentDateFormatted = getDateWithoutTime(currentDayDate);
+
+      // Check if there's an event on this day
+      const eventOnDay = events.some((event) => event.date === currentDateFormatted);
+
       days.push(
         <div key={`day-${i}`} className="calendar-cell" onClick={() => handleDateClick(i)}>
           <span>{i}</span>
+          {eventOnDay && <div className="event-badge"></div>} {/* Badge for events */}
         </div>
       );
     }
@@ -75,7 +91,9 @@ const Calendar: React.FC = () => {
     return events.map((event, index) => (
       <li key={index} className="event-list-item">
         <strong>{event.date}:</strong> {event.description}
-        <button onClick={() => handleDeleteEvent(event.date)} className="delete-event-button">Delete</button>
+        <button onClick={() => handleDeleteEvent(event.date)} className="delete-event-button">
+          Delete
+        </button>
       </li>
     ));
   };
@@ -85,7 +103,7 @@ const Calendar: React.FC = () => {
       <div className="calendar-header">
         <button onClick={handlePrevYear}>{"<<"}</button>
         <button onClick={handlePrevMonth}>{"<"}</button>
-        <span>
+        <span className="calendar-month-title">
           {date.toLocaleString("default", { month: "long" })} {date.getFullYear()}
         </span>
         <button onClick={handleNextMonth}>{">"}</button>
@@ -95,9 +113,6 @@ const Calendar: React.FC = () => {
 
       {selectedDate && (
         <div className="modal">
-          <button className="modal-close" onClick={() => setSelectedDate(null)}>
-            x
-          </button>
           <h3>Add Event</h3>
           <input
             type="text"
@@ -105,7 +120,12 @@ const Calendar: React.FC = () => {
             onChange={(e) => setNewEvent(e.target.value)}
             placeholder="Event description"
           />
-          <button onClick={handleAddEvent} className="modal-add-button">Add Event</button>
+          <button className="modal-btn add-event-btn" onClick={handleAddEvent}>
+            Add Event
+          </button>
+          <button className="modal-btn close-modal-btn" onClick={() => setSelectedDate(null)}>
+            ×
+          </button>
         </div>
       )}
 
