@@ -184,12 +184,12 @@ textarea::placeholder {
 }
 
 .add-event-btn {
-  background-color: #003880;
+  background-color: #003880; /* Green for Add/Save */
   width: 100%;
 }
 
 .add-event-btn:hover {
-  background-color: #00285c;
+  background-color: #01224d; /* Darker green on hover */
 }
 
 .close-modal-btn {
@@ -204,8 +204,9 @@ textarea::placeholder {
 }
 
 .close-modal-btn:hover {
-  color: #ff0000;
+  color: #ff0000; /* Red hover effect */
 }
+
 
 /* Event List */
 .event-list-container {
@@ -223,8 +224,7 @@ textarea::placeholder {
 .event-list-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 600px; /* Take full width */
+  width: 700px; /* Take full width */
   background-color: #333333;
   padding: 10px;
   margin: 8px 0;
@@ -266,3 +266,21 @@ textarea::placeholder {
 .delete-event-button:hover {
   background-color: darkred;
 }
+
+/* Add styles for the reset button */
+.reset-btn {
+  background-color: #ff6347; /* Red color for emphasis */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  margin-top: 10px;
+}
+
+.reset-btn:hover {
+  background-color: #ff4d2b; /* Darker red on hover */
+}
+

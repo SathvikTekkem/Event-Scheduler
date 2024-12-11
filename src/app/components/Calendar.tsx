@@ -16,6 +16,7 @@ const Calendar: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [newEvent, setNewEvent] = useState<string>("");
+  const [editingEventId, setEditingEventId] = useState<string | null>(null); // Track which event is being edited
 
   const handlePrevMonth = () => setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
   const handleNextMonth = () => setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
@@ -25,19 +26,46 @@ const Calendar: React.FC = () => {
   const handleDateClick = (day: number) => {
     const clickedDate = new Date(date.getFullYear(), date.getMonth(), day);
     setSelectedDate(clickedDate.toISOString().split("T")[0]);
+    setNewEvent(""); // Reset the event input field
   };
 
   const handleAddEvent = () => {
     if (selectedDate && newEvent) {
-      setEvents([...events, { id: Date.now().toString(), date: selectedDate, description: newEvent }]);
-      setNewEvent("");
+      setEvents((prevEvents) => [
+        ...prevEvents,
+        { id: Date.now().toString(), date: selectedDate, description: newEvent },
+      ]);
+      setNewEvent(""); // Clear the input field
+    }
+  };
+
+  const handleEditEvent = (event: Event) => {
+    setEditingEventId(event.id); // Set the event being edited
+    setNewEvent(event.description); // Set the input field with the current description
+  };
+
+  const handleSaveChanges = () => {
+    if (editingEventId && newEvent) {
+      setEvents((prevEvents) =>
+        prevEvents.map((event) =>
+          event.id === editingEventId ? { ...event, description: newEvent } : event
+        )
+      );
+      setEditingEventId(null); // Reset editing state
+      setNewEvent(""); // Clear input
     }
   };
 
   const handleDeleteEvent = (id: string) => setEvents(events.filter((event) => event.id !== id));
 
-  const handleEditEvent = (event: Event) => {
-    // Logic for editing events can go here
+  const handleCloseModal = () => {
+    setSelectedDate(null); // Reset selectedDate
+    setNewEvent(""); // Clear the event input
+  };
+
+  const handleResetToToday = () => {
+    setDate(new Date()); // Set the date to today's date
+    setSelectedDate(null); // Optionally reset the selected date as well
   };
 
   return (
@@ -57,11 +85,17 @@ const Calendar: React.FC = () => {
           newEvent={newEvent}
           setNewEvent={setNewEvent}
           onAddEvent={handleAddEvent}
-          onClose={() => setSelectedDate(null)}
+          onSaveChanges={handleSaveChanges} // Pass the save function to EventModal
+          onClose={handleCloseModal}
           onEditEvent={handleEditEvent}
           onDeleteEvent={handleDeleteEvent}
+          editingEventId={editingEventId} // Pass the editingEventId to EventModal
         />
       )}
+      {/* Reset Button to today's date */}
+      <button className="reset-btn" onClick={handleResetToToday}>
+        Reset to Today's Date
+      </button>
     </div>
   );
 };

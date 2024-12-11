@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Event {
   id: string;
@@ -12,9 +12,11 @@ interface EventModalProps {
   newEvent: string;
   setNewEvent: (value: string) => void;
   onAddEvent: () => void;
+  onSaveChanges: () => void; // Add this function for saving changes
   onClose: () => void;
   onEditEvent: (event: Event) => void;
   onDeleteEvent: (id: string) => void;
+  editingEventId: string | null; // Track if we are editing
 }
 
 const EventModal: React.FC<EventModalProps> = ({
@@ -23,17 +25,25 @@ const EventModal: React.FC<EventModalProps> = ({
   newEvent,
   setNewEvent,
   onAddEvent,
+  onSaveChanges,
   onClose,
   onEditEvent,
   onDeleteEvent,
+  editingEventId,
 }) => {
   const eventsForDay = events.filter((event) => event.date === selectedDate);
+
+  useEffect(() => {
+    if (!editingEventId) {
+      setNewEvent(""); // Clear input when no event is being edited
+    }
+  }, [editingEventId, setNewEvent]);
 
   return (
     <div className="modal">
       <h3>Events for {selectedDate}</h3>
       {eventsForDay.length > 0 ? (
-        <ul>
+        <ul className="event-list">
           {eventsForDay.map((event) => (
             <li key={event.id} className="event-list-item">
               <strong>{event.description}</strong>
@@ -57,8 +67,8 @@ const EventModal: React.FC<EventModalProps> = ({
         onChange={(e) => setNewEvent(e.target.value)}
         placeholder="Event description"
       />
-      <button className="modal-btn add-event-btn" onClick={onAddEvent}>
-        Add Event
+      <button className="modal-btn add-event-btn" onClick={editingEventId ? onSaveChanges : onAddEvent}>
+        {editingEventId ? "Save Changes" : "Add Event"}
       </button>
       <button className="modal-btn close-modal-btn" onClick={onClose}>
         Close
