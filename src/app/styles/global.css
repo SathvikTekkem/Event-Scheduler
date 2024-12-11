@@ -1,5 +1,19 @@
-/* styles/globals.css */
+/* src/styles/global.css */
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  header {
+    background-color: #003880;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+  }
+  
