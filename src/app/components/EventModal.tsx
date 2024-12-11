@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./EventModal.css"
 
 interface Event {
   id: string;

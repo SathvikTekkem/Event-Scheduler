@@ -1,4 +1,5 @@
 import React from "react";
+import "./CalendarGrid.css"
 
 interface Event {
   id: string;

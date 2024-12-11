@@ -110,7 +110,7 @@ const Calendar: React.FC = () => {
       />
       <div className="button-group">
         <button className="reset-btn" onClick={handleResetToToday}>
-          Reset to Today's Date
+          Go to Today's Date
         </button>
         <button className="add-eventP-btn" onClick={handleOpenAddEventModal}>
           Add Event

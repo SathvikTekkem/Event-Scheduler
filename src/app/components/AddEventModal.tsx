@@ -1,5 +1,6 @@
 import React from "react";
 import "./Calendar.css";
+import "./AddEventModal.css"
 
 interface AddEventModalProps {
   addEventDate: {

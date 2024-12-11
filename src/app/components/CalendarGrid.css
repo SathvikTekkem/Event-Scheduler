@@ -1,0 +1,67 @@
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .calendar-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    font-size: 1.1rem;
+    background-color: #333333;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+    position: relative;
+  }
+  
+  .calendar-cell:hover {
+    background-color: #444444;
+  }
+  
+  .calendar-cell.today {
+    background-color: #4c3fd3;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  .calendar-cell.empty {
+    background-color: transparent;
+  }
+  
+  /* Event Badge */
+  .badge-wrapper {
+    position: relative;
+  }
+  
+  .event-badge {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(90%);
+    background-color: #ff6347;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    font-size: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .event-badge:nth-child(n+2) {
+    top: 2px;
+  }
+  
+  .event-badge:nth-child(n+3) {
+    top: 4px;
+  }
+  

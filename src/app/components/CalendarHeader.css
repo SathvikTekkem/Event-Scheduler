@@ -1,0 +1,45 @@
+/* Calendar Container */
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+  }
+  
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    width: 85%;
+  }
+  
+  .calendar-month-title {
+    flex-grow: 1;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .calendar-header button {
+    background-color: #003880;
+    color: white;
+    border: none;
+    padding: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+    min-width: 50px;
+  }
+  
+  .calendar-header button:hover {
+    background-color: #00285c;
+  }
+  
