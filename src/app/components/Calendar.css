@@ -1,4 +1,4 @@
-/* Dark Theme Calendar Component Styles */
+/* General Styles */
 body {
   background-color: #121212;
   color: #e0e0e0;
@@ -9,39 +9,35 @@ body {
 }
 
 * {
-  box-sizing: border-box; /* Ensure padding/border are included in width/height calculation */
+  box-sizing: border-box;
 }
 
+/* Calendar Container */
 .calendar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px auto;
   width: 100%;
-  max-width: 800px; /* Keep the container from stretching too wide */
+  max-width: 800px;
   padding: 10px;
-  margin-left: auto;
-  margin-right: auto; /* Center the container */
 }
 
 .calendar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 15px; /* Adjusted padding for better containment */
+  padding: 0 15px;
   font-size: 1.2rem;
   color: #ffffff;
   margin-bottom: 20px;
-  overflow: hidden; /* Ensure no overflow occurs */
-  width: 85%; /* Make sure the header takes up full available width */
+  width: 85%;
 }
 
 .calendar-month-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-grow: 1;
   font-size: 1.5rem;
-  flex-grow: 1; /* Allows the title to take up remaining space */
+  text-align: center;
 }
 
 .calendar-header button {
@@ -54,21 +50,21 @@ body {
   border-radius: 5px;
   margin: 0 10px;
   transition: background-color 0.3s ease;
-  min-width: 50px; /* Prevent buttons from shrinking too much */
-  flex-shrink: 0; /* Prevent buttons from shrinking */
+  min-width: 50px;
 }
 
 .calendar-header button:hover {
   background-color: #00285c;
 }
 
+/* Calendar Grid */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
+  gap: 10px;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 600px; /* Max width for grid */
+  max-width: 600px;
 }
 
 .calendar-cell {
@@ -89,8 +85,8 @@ body {
 }
 
 .calendar-cell.today {
-  background-color: #4c3fd3; /* Highlight current day with a distinct color */
-  color: white; /* White text for better contrast */
+  background-color: #4c3fd3;
+  color: white;
   border-radius: 8px;
   font-weight: bold;
 }
@@ -99,44 +95,39 @@ body {
   background-color: transparent;
 }
 
-.calendar-cell span {
-  font-weight: bold;
-}
-
-/* Badge styles for event dates */
-.calendar-cell .badge-wrapper {
+/* Event Badge */
+.badge-wrapper {
   position: relative;
-  height: 0px; /* Adjust the height based on number of badges */
 }
 
-.calendar-cell .event-badge {
+.event-badge {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(90%);
-  background-color: #ff6347; /* Badge color */
+  background-color: #ff6347;
   color: #ffffff;
   border-radius: 50%;
   width: 12px;
   height: 12px;
+  font-size: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.5rem;
-  transition: top 0.2s ease;
 }
 
-.calendar-cell .event-badge:nth-child(n+2) {
-  top: 2px; /* Shift subsequent badges by 2px for separation */
+.event-badge:nth-child(n+2) {
+  top: 2px;
 }
 
-.calendar-cell .event-badge:nth-child(n+3) {
-  top: 4px; /* Further shift for more badges */
+.event-badge:nth-child(n+3) {
+  top: 4px;
 }
 
+/* Modal Styles */
 .modal {
   position: fixed;
-  top: 57%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #1e1e1e;
@@ -146,7 +137,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .modal h3 {
@@ -164,7 +156,6 @@ body {
   border-radius: 5px;
   font-size: 1rem;
   width: 100%;
-  box-sizing: border-box;
   margin-bottom: 15px;
 }
 
@@ -175,17 +166,12 @@ body {
   background-color: #444444;
 }
 
-/* Placeholder text */
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: #888888;
 }
 
-/* For Textarea */
-textarea {
-  height: 100px;
-  resize: vertical;
-}
-
+/* Modal Buttons */
 .modal-btn {
   color: white;
   border: none;
@@ -212,7 +198,7 @@ textarea {
   right: 10px;
   background-color: transparent;
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   border: none;
   cursor: pointer;
 }
@@ -221,43 +207,40 @@ textarea {
   color: #ff0000;
 }
 
+/* Event List */
 .event-list-container {
-  margin-top: 30px;
   width: 100%;
-  max-width: 600px;
-}
-
-.event-list-container h3 {
-  font-size: 1.5rem;
-  color: #ffffff;
-  margin-bottom: 15px;
+  max-width: 800px;
+  margin: 0 auto; /* Center the list */
 }
 
 .event-list {
-  list-style-type: none;
+  width: 100%;
   padding: 0;
-  font-size: 1.1rem;
 }
+
 
 .event-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 600px; /* Take full width */
   background-color: #333333;
-  margin: 8px 0;
   padding: 10px;
+  margin: 8px 0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  color: #ffffff;
 }
+
+
 
 .event-list-item strong {
   font-weight: bold;
 }
 
-.delete-event-button{
-  background-color: red;
-  color: white;
+/* Event Actions */
+.edit-event-button,
+.delete-event-button {
   border: none;
   padding: 6px 10px;
   font-size: 0.9rem;
@@ -265,58 +248,21 @@ textarea {
   border-radius: 5px;
 }
 
-.edit-event-button{
+.edit-event-button {
   background-color: orange;
-  color: rgb(60, 47, 47);
   margin-right: 8px;
-  border: none;
-  padding: 6px 10px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border-radius: 5px;
+  color: #3c2f2f;
+}
+
+.edit-event-button:hover {
+  background-color: darkorange;
+}
+
+.delete-event-button {
+  background-color: red;
+  color: white;
 }
 
 .delete-event-button:hover {
   background-color: darkred;
-}
-
-/* Input Fields and Textareas */
-input, textarea {
-  background-color: #333333;
-  color: white;
-  border: 1px solid #555555;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 1rem;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 10px;
-}
-
-input:focus, textarea:focus {
-  outline: none;
-  border-color: #4888d4;
-  background-color: #444444;
-}
-
-/* Placeholder text */
-input::placeholder, textarea::placeholder {
-  color: #888888;
-}
-
-/* For Textarea */
-textarea {
-  height: 100px;
-  resize: vertical;
-}
-
-/* Form section for adding or editing events */
-.event-form {
-  margin-top: 20px;
-}
-
-.event-form label {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  display: block;
 }
