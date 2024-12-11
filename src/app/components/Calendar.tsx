@@ -89,34 +89,43 @@ const Calendar: React.FC = () => {
     
     const currentDate = new Date(); // Get today's date
     const currentDayFormatted = getDateWithoutTime(currentDate); // Format it as YYYY-MM-DD
-
+  
+    // Add empty cells for the days before the 1st of the month
     for (let i = 0; i < firstDayIndex; i++) {
       days.push(<div key={`empty-${i}`} className="calendar-cell empty"></div>);
     }
-
+  
+    // Add the actual day cells to the calendar grid
     for (let i = 1; i <= daysInMonth; i++) {
       const currentDayDate = new Date(date.getFullYear(), date.getMonth(), i);
       const currentDateFormatted = getDateWithoutTime(currentDayDate);
-
+  
       // Check if there's an event on this day
-      const eventOnDay = events.some((event) => event.date === currentDateFormatted);
-
+      const eventOnDay = events.filter((event) => event.date === currentDateFormatted);
+      const eventCount = eventOnDay.length;
+  
       // Check if it's the current day
       const isToday = currentDateFormatted === currentDayFormatted;
-
+  
       // Add the day cell to the array
       days.push(
         <div
           key={`day-${i}`}
-          className={`calendar-cell ${isToday ? "today" : ""}`}
+          className={`calendar-cell ${isToday ? "today" : ""}`} // Add the 'today' class if it's the current day
           onClick={() => handleDateClick(i)}
         >
           <span>{i}</span>
-          {eventOnDay && <div className="event-badge"></div>} {/* Badge for events */}
+  
+          {/* Add the event badge showing event count */}
+          {eventCount > 0 && (
+            <div className="badge-wrapper">
+              <div className="event-badge">{eventCount}</div>
+            </div>
+          )}
         </div>
       );
     }
-
+  
     return days;
   };
 
@@ -125,7 +134,7 @@ const Calendar: React.FC = () => {
       <li key={index} className="event-list-item">
         <strong>{event.date}:</strong> {event.description}
         <div className="event-actions">
-        <button onClick={() => handleEditEvent(event)} className="edit-event-button">
+          <button onClick={() => handleEditEvent(event)} className="edit-event-button">
             Edit
           </button>
           <button onClick={() => handleDeleteEvent(event.date)} className="delete-event-button">
