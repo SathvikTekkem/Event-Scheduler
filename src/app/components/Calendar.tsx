@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import CalendarHeader from "./CalendarHeader";
 import CalendarGrid from "./CalendarGrid";
 import EventModal from "./EventModal";
+import AddEventModal from "./AddEventModal";
 import "./Calendar.css";
 
 interface Event {
   id: string;
-  date: string;
+  date: string; // e.g., "2024-12-12"
   description: string;
 }
 
@@ -16,7 +17,16 @@ const Calendar: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [newEvent, setNewEvent] = useState<string>("");
-  const [editingEventId, setEditingEventId] = useState<string | null>(null); // Track which event is being edited
+  const [editingEventId, setEditingEventId] = useState<string | null>(null);
+  
+  // State for Add Event Modal
+  const [isAddEventModalOpen, setIsAddEventModalOpen] = useState<boolean>(false);
+  const [addEventDate, setAddEventDate] = useState<{
+    day: number;
+    month: number;
+    year: number;
+  }>({ day: 1, month: 1, year: date.getFullYear() });
+  const [addEventDescription, setAddEventDescription] = useState<string>("");
 
   const handlePrevMonth = () => setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
   const handleNextMonth = () => setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
@@ -36,6 +46,7 @@ const Calendar: React.FC = () => {
         { id: Date.now().toString(), date: selectedDate, description: newEvent },
       ]);
       setNewEvent(""); // Clear the input field
+      setSelectedDate(null); // Close modal
     }
   };
 
@@ -61,11 +72,31 @@ const Calendar: React.FC = () => {
   const handleCloseModal = () => {
     setSelectedDate(null); // Reset selectedDate
     setNewEvent(""); // Clear the event input
+    setEditingEventId(null); // Reset editing state
   };
 
   const handleResetToToday = () => {
     setDate(new Date()); // Set the date to today's date
     setSelectedDate(null); // Optionally reset the selected date as well
+  };
+
+  // Handlers for Add Event Modal
+  const handleOpenAddEventModal = () => setIsAddEventModalOpen(true);
+  const handleCloseAddEventModal = () => {
+    setIsAddEventModalOpen(false);
+    setAddEventDate({ day: 1, month: 1, year: date.getFullYear() });
+    setAddEventDescription("");
+  };
+  const handleSubmitAddEvent = () => {
+    const { day, month, year } = addEventDate;
+    const formattedDate = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    if (formattedDate && addEventDescription) {
+      setEvents((prevEvents) => [
+        ...prevEvents,
+        { id: Date.now().toString(), date: formattedDate, description: addEventDescription },
+      ]);
+      handleCloseAddEventModal();
+    }
   };
 
   return (
@@ -77,25 +108,43 @@ const Calendar: React.FC = () => {
         onPrevYear={handlePrevYear}
         onNextYear={handleNextYear}
       />
+      <div className="button-group">
+        <button className="reset-btn" onClick={handleResetToToday}>
+          Reset to Today's Date
+        </button>
+        <button className="add-eventP-btn" onClick={handleOpenAddEventModal}>
+          Add Event
+        </button>
+      </div>
       <CalendarGrid date={date} events={events} onDateClick={handleDateClick} />
+      
+      {/* Modal for Adding/Editing Event by Clicking on Date */}
       {selectedDate && (
         <EventModal
           selectedDate={selectedDate}
-          events={events}
+          events={events.filter(event => event.date === selectedDate)}
           newEvent={newEvent}
           setNewEvent={setNewEvent}
           onAddEvent={handleAddEvent}
-          onSaveChanges={handleSaveChanges} // Pass the save function to EventModal
+          onSaveChanges={handleSaveChanges}
           onClose={handleCloseModal}
           onEditEvent={handleEditEvent}
           onDeleteEvent={handleDeleteEvent}
-          editingEventId={editingEventId} // Pass the editingEventId to EventModal
+          editingEventId={editingEventId}
         />
       )}
-      {/* Reset Button to today's date */}
-      <button className="reset-btn" onClick={handleResetToToday}>
-        Reset to Today's Date
-      </button>
+      
+      {/* Modal for Adding Event via "Add Event" Button */}
+      {isAddEventModalOpen && (
+        <AddEventModal
+          addEventDate={addEventDate}
+          setAddEventDate={setAddEventDate}
+          addEventDescription={addEventDescription}
+          setAddEventDescription={setAddEventDescription}
+          onSubmit={handleSubmitAddEvent}
+          onClose={handleCloseAddEventModal}
+        />
+      )}
     </div>
   );
 };

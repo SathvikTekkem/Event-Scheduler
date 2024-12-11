@@ -207,6 +207,90 @@ textarea::placeholder {
   color: #ff0000; /* Red hover effect */
 }
 
+/* Add event modal Actions */
+.form-group{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-group-day,.form-group-year,.form-group-month{
+  padding: 16px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-add-event {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 50%;
+  padding-bottom: 50px;
+}
+
+.modal-add-event input,
+.modal-add-event textarea {
+  background-color: #333333;
+  color: white;
+  border: 1px solid #555555;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100;
+  margin-bottom: 15px;
+}
+
+select {
+  padding: 8px;
+  border-radius: 5px;
+  background-color: rgb(226, 226, 226);
+}
+
+
+.modal-btn-add-event {
+  color: white;
+  align-self: center;
+  border: 1px solid;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 24px;
+  border-color: #0051bc;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  background-color: #003880; /* Green for Add/Save */
+  width: 100%;
+}
+
+.modal-btn-add-event:hover {
+  background-color: #01224d; /* Darker green on hover */
+}
+
+.modal-btn-close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.close-modal-btn:hover {
+  color: #ff0000; /* Red hover effect */
+}
+
 
 /* Event List */
 .event-list-container {
@@ -269,14 +353,15 @@ textarea::placeholder {
 
 /* Add styles for the reset button */
 .reset-btn {
-  background-color: #ff6347; /* Red color for emphasis */
+  background-color: #c11d00; /* Red color for emphasis */
   color: white;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 24px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: none;
+  border: 1px solid;
+  border-color: #530000;
   margin-top: 10px;
 }
 
@@ -284,3 +369,29 @@ textarea::placeholder {
   background-color: #ff4d2b; /* Darker red on hover */
 }
 
+.add-eventP-btn{
+  background-color: #909090 ; /* Red color for emphasis */
+  border: 1px solid;
+  border-color: #cbcbcb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.add-eventP-btn:hover {
+  background-color: #b8b8b8; 
+}
+
+
+.button-group{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 77%;
+  cursor: pointer;
+  padding-bottom: 24px;
+}
