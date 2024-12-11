@@ -1,194 +1,300 @@
 /* Dark Theme Calendar Component Styles */
 body {
-    background-color: #121212;
-    color: #e0e0e0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .calendar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .calendar-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    color: #ffffff;
-  }
-  .calendar-month-title{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0px 120px;
-  }
-  
-  .calendar-header button {
-    background-color: #003880;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 0 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .calendar-header button:hover {
-    background-color: #00285C;
-  }
-  
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .calendar-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    font-size: 1.1rem;
-    background-color: #333333;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #ffffff;
-  }
-  
-  .calendar-cell:hover {
-    background-color: #444444;
-  }
-  
-  .calendar-cell.empty {
-    background-color: transparent;
-  }
-  
-  .calendar-cell span {
-    font-weight: bold;
-  }
-  
-  .modal {
-    position: fixed;
-    top: 57%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px; /* You can adjust this width as per your design needs */
-  }
-  
-  .modal h3 {
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-    color: #ffffff;
-  }
-  
-  .modal input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #444444;
-    background-color: #333333;
-    color: #ffffff;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .modal-btn {
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-    
-  }
-  
-  .add-event-btn {
-    background-color: #003880;
-    width: 100%;
-  }
-  
-  .add-event-btn:hover {
-    background-color: #00285C;
-  }
-  
-  /* Positioning the Close Button at Top Right */
-  .close-modal-btn {
-    position: absolute;
-    top: 10px; /* distance from the top */
-    right: 10px; /* distance from the right */
-    background-color: transparent;
-    color: #ffffff;
-    font-size: 1.5rem;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .close-modal-btn:hover {
-    color: #ff0000;
-  }
-  
-  .event-list-container {
-    margin-top: 30px;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .event-list-container h3 {
-    font-size: 1.5rem;
-    color: #ffffff;
-    margin-bottom: 15px;
-  }
-  
-  .event-list {
-    list-style-type: none;
-    padding: 0;
-    font-size: 1.1rem;
-  }
-  
-  .event-list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333333;
-    margin: 8px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    color: #ffffff;
-  }
-  
-  .event-list-item strong {
-    font-weight: bold;
-  }
-  
-  .delete-event-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .delete-event-button:hover {
-    background-color: darkred;
-  }
-  
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box; /* Ensure padding/border are included in width/height calculation */
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px; /* Keep the container from stretching too wide */
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto; /* Center the container */
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px; /* Adjusted padding for better containment */
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  overflow: hidden; /* Ensure no overflow occurs */
+  width: 85%; /* Make sure the header takes up full available width */
+}
+
+.calendar-month-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-grow: 1; /* Allows the title to take up remaining space */
+}
+
+.calendar-header button {
+  background-color: #003880;
+  color: white;
+  border: none;
+  padding: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+  min-width: 50px; /* Prevent buttons from shrinking too much */
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.calendar-header button:hover {
+  background-color: #00285c;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px; /* Max width for grid */
+}
+
+.calendar-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-size: 1.1rem;
+  background-color: #333333;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #ffffff;
+  position: relative;
+}
+
+.calendar-cell:hover {
+  background-color: #444444;
+}
+
+.calendar-cell.empty {
+  background-color: transparent;
+}
+
+.calendar-cell span {
+  font-weight: bold;
+}
+
+/* Badge styles for event dates */
+.calendar-cell .event-badge {
+  position: absolute;
+  top: 5px; /* Adjust position */
+  right: 5px; /* Adjust position */
+  background-color: #ff0000; /* Badge color */
+  color: #ffffff;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.modal {
+  position: fixed;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.modal h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.modal input,
+.modal textarea {
+  background-color: #333333;
+  color: white;
+  border: 1px solid #555555;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.modal input:focus,
+.modal textarea:focus {
+  outline: none;
+  border-color: #4888d4;
+  background-color: #444444;
+}
+
+/* Placeholder text */
+input::placeholder, textarea::placeholder {
+  color: #888888;
+}
+
+/* For Textarea */
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.modal-btn {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-event-btn {
+  background-color: #003880;
+  width: 100%;
+}
+
+.add-event-btn:hover {
+  background-color: #00285c;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.close-modal-btn:hover {
+  color: #ff0000;
+}
+
+.event-list-container {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.event-list-container h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.event-list {
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+.event-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333333;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+}
+
+.event-list-item strong {
+  font-weight: bold;
+}
+
+.delete-event-button{
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-event-button{
+  background-color: orange;
+  color: rgb(60, 47, 47);
+  margin-right: 8px;
+  border: none;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-event-button:hover {
+  background-color: darkred;
+}
+
+/* Input Fields and Textareas */
+input, textarea {
+  background-color: #333333;
+  color: white;
+  border: 1px solid #555555;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #4888d4;
+  background-color: #444444;
+}
+
+/* Placeholder text */
+input::placeholder, textarea::placeholder {
+  color: #888888;
+}
+
+/* For Textarea */
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Form section for adding or editing events */
+.event-form {
+  margin-top: 20px;
+}
+
+.event-form label {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  display: block;
+}

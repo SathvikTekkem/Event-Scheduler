@@ -14,6 +14,10 @@ const Calendar: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [newEvent, setNewEvent] = useState<string>("");
 
+  // States for editing event
+  const [editingEvent, setEditingEvent] = useState<Event | null>(null);
+  const [updatedDescription, setUpdatedDescription] = useState<string>("");
+
   // Navigate to previous month
   const handlePrevMonth = () => {
     setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
@@ -59,25 +63,54 @@ const Calendar: React.FC = () => {
     setEvents(events.filter((event) => event.date !== date));
   };
 
+  const handleEditEvent = (event: Event) => {
+    setEditingEvent(event); // Set the event to be edited
+    setUpdatedDescription(event.description); // Pre-fill the description for editing
+  };
+
+  const handleSaveEvent = () => {
+    if (editingEvent) {
+      // Update the event in the events array
+      const updatedEvents = events.map((event) =>
+        event.date === editingEvent.date
+          ? { ...event, description: updatedDescription }
+          : event
+      );
+      setEvents(updatedEvents);
+      setEditingEvent(null); // Close the editing mode
+      setUpdatedDescription(""); // Clear the description input
+    }
+  };
+
   const renderDays = () => {
     const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     const firstDayIndex = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
     const days = [];
+    
+    const currentDate = new Date(); // Get today's date
+    const currentDayFormatted = getDateWithoutTime(currentDate); // Format it as YYYY-MM-DD
 
     for (let i = 0; i < firstDayIndex; i++) {
       days.push(<div key={`empty-${i}`} className="calendar-cell empty"></div>);
     }
 
     for (let i = 1; i <= daysInMonth; i++) {
-      // Format current day
       const currentDayDate = new Date(date.getFullYear(), date.getMonth(), i);
       const currentDateFormatted = getDateWithoutTime(currentDayDate);
 
       // Check if there's an event on this day
       const eventOnDay = events.some((event) => event.date === currentDateFormatted);
 
+      // Check if it's the current day
+      const isToday = currentDateFormatted === currentDayFormatted;
+
+      // Add the day cell to the array
       days.push(
-        <div key={`day-${i}`} className="calendar-cell" onClick={() => handleDateClick(i)}>
+        <div
+          key={`day-${i}`}
+          className={`calendar-cell ${isToday ? "today" : ""}`}
+          onClick={() => handleDateClick(i)}
+        >
           <span>{i}</span>
           {eventOnDay && <div className="event-badge"></div>} {/* Badge for events */}
         </div>
@@ -91,9 +124,14 @@ const Calendar: React.FC = () => {
     return events.map((event, index) => (
       <li key={index} className="event-list-item">
         <strong>{event.date}:</strong> {event.description}
-        <button onClick={() => handleDeleteEvent(event.date)} className="delete-event-button">
-          Delete
-        </button>
+        <div className="event-actions">
+        <button onClick={() => handleEditEvent(event)} className="edit-event-button">
+            Edit
+          </button>
+          <button onClick={() => handleDeleteEvent(event.date)} className="delete-event-button">
+            Delete
+          </button>
+        </div>
       </li>
     ));
   };
@@ -124,6 +162,27 @@ const Calendar: React.FC = () => {
             Add Event
           </button>
           <button className="modal-btn close-modal-btn" onClick={() => setSelectedDate(null)}>
+            ×
+          </button>
+        </div>
+      )}
+
+      {editingEvent && (
+        <div className="modal">
+          <h3>Edit Event</h3>
+          <input
+            type="text"
+            value={updatedDescription}
+            onChange={(e) => setUpdatedDescription(e.target.value)}
+            placeholder="Update event description"
+          />
+          <button className="modal-btn save-event-btn" onClick={handleSaveEvent}>
+            Save Changes
+          </button>
+          <button
+            className="modal-btn close-modal-btn"
+            onClick={() => setEditingEvent(null)} // Close the edit modal
+          >
             ×
           </button>
         </div>
