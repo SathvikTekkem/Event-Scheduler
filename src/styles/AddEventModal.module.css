@@ -1,0 +1,122 @@
+/* Modal container with centered positioning */
+.modal-add-event {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+    background-color: #fff;
+    color: #003880;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    min-height: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 99;
+}
+
+/* Flexbox form groups with consistent spacing */
+.form-group, .form-group-day, .form-group-month, .form-group-year {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+.form-group-day{
+    margin-top: 20px;
+}
+
+/* Select dropdown with custom arrow */
+.selectField {
+    appearance: none;
+    background: #f1f1f1;
+    background-size: 16px;
+    padding: 10px 40px 10px 10px;
+    color: #333;
+    font-size: 1rem;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Input fields and buttons */
+.input, .modal-btn-add-event,.textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: rgb(72, 72, 72);
+    box-sizing: border-box;
+}
+
+.textarea {
+    height: 80px;
+    resize: none;
+}
+
+/* Main button with hover effect */
+.modal-btn-add-event {
+    background-color: #003880;
+    color: white;
+    border: 1px solid #0051bc;
+    cursor: pointer;
+    border-radius: 24px;
+    transition: background-color 0.3s ease;
+    margin: 16px 0;
+}
+
+.modal-btn-add-event:hover {
+    background-color: #01224d;
+}
+
+/* Close button with hover effect */
+.modal-btn-close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: #3e3e3e;
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-btn-close-modal:hover {
+    color: #ff0000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-add-event {
+        padding: 15px;
+    }
+
+    .selectField, .input, .textarea, .modal-btn-add-event {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-add-event {
+        padding: 10px;
+        margin: 20px;
+        width: 22rem;
+    }
+
+    .selectField, .input, .textarea, .modal-btn-add-event {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}

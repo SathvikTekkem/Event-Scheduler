@@ -1,0 +1,86 @@
+/* General Styles */
+
+/* Title styling */
+.title {
+  color: #323232;
+  margin-bottom: 16px;
+}
+
+/* Container for the project, with background and border styling */
+.project-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  width: 100%;
+  /* max-width: 800px; */
+  margin: 0 auto;
+  border: 1px solid #d4d4d4; /* Border color */
+  border-radius: 24px;
+  padding: 30px;
+}
+
+/* Reset button styling */
+.reset-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #003880;
+  border: 3px solid #2682fb; /* Button border color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.reset-btn:hover {
+  background-color: #2682fb; /* Change color on hover */
+}
+
+/* Add event button styling */
+.add-eventP-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #003880;
+  border: 3px solid #2682fb; /* Button border color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.add-eventP-btn:hover {
+  background-color: #2682fb; /* Change color on hover */
+}
+
+.add-event-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  /* Additional styling */
+  filter: invert(1); /* Example: Adjusts icon color */
+  transition: transform 0.2s; /* Adds animation on hover */
+}
+
+.add-event-btn:hover .add-event-icon {
+  transform: scale(1.2); /* Makes the icon grow slightly on hover */
+}
+
+
+/* Button group layout with space between buttons */
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  cursor: pointer;
+  padding-bottom: 24px;
+}

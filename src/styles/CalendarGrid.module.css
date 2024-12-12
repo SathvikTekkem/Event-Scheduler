@@ -1,0 +1,112 @@
+/* Center the calendar within the container */
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-top: 1px solid #d4d4d4;
+    border-radius: 0 0 24px 24px;
+  }
+  
+  /* Grid layout for the calendar */
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+    gap: 2px;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* Individual calendar cells */
+  .calendar-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    border: 1px solid #f9f9f9;
+    background-color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle depth effect */
+    position: relative; /* Ensures event badge is positioned relative to the cell */
+    transition: background-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .calendar-cell:hover {
+    background-color: #e6e6e6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Highlight the current day */
+  .calendar-cell.today {
+    background-color: #0058cc;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 110, 254, 0.3);
+  }
+  
+  /* Style for empty cells (outside the current month) */
+  .calendar-cell.empty {
+    background-color: transparent;
+    cursor: default;
+  }
+  
+  /* Event badge inside the calendar cell */
+  .event-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.3s;
+    z-index: 2; /* Ensure it's above other content */
+  }
+  
+  .event-badge:hover {
+    transform: scale(1.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    background-color: #005085;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .calendar-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 columns for smaller screens */
+      gap: 6px;
+    }
+  
+    .calendar-cell {
+      height: 80px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .calendar-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for very small screens */
+      gap: 4px;
+    }
+  
+    .calendar-cell {
+      height: 60px;
+    }
+  
+    .calendar-cell.today {
+      font-size: 0.9rem;
+    }
+  }
+  
