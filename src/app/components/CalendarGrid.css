@@ -1,6 +1,4 @@
-/* CalendarGrid.css */
-
-/* Center the calendar grid within the parent container */
+/* Center the calendar within the container */
 .calendar-container {
     display: flex;
     flex-direction: column;
@@ -10,114 +8,105 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    border-top: 1px solid;
-    border-color: #d4d4d4;
-    border-radius: 0px 0px 24px 24px;
+    border-top: 1px solid #d4d4d4;
+    border-radius: 0 0 24px 24px;
   }
   
-  /* Calendar Grid */
+  /* Grid layout for the calendar */
   .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px; /* Slightly smaller gaps for a cleaner look */
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+    gap: 2px;
     width: 100%;
-    max-width: 800px; /* Center the grid and limit its width */
+    max-width: 800px;
   }
   
-  /* Calendar Cells */
+  /* Individual calendar cells */
   .calendar-cell {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100px;
     width: 100px;
-    border: #f9f9f9 1px solid;
-    font-size: 1rem;
-    background-color: #ffffff; /* Light background for a minimalist UI */
+    border: 1px solid #f9f9f9;
+    background-color: #fff;
     border-radius: 8px;
     cursor: pointer;
-    color: #333333; /* Dark text for contrast */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    position: relative;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle depth effect */
+    position: relative; /* Ensures event badge is positioned relative to the cell */
+    transition: background-color 0.2s, box-shadow 0.2s;
   }
   
   .calendar-cell:hover {
-    background-color: #e6e6e6; /* Slight hover effect */
+    background-color: #e6e6e6;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
-
-
   
-  /* Highlight today's date */
+  /* Highlight the current day */
   .calendar-cell.today {
-    background-color: #0058cc; /* Blue highlight for today */
+    background-color: #0058cc;
     color: white;
     font-weight: bold;
-    border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 110, 254, 0.3);
   }
   
-  /* Empty cells for days outside the current month */
+  /* Style for empty cells (outside the current month) */
   .calendar-cell.empty {
     background-color: transparent;
     cursor: default;
   }
   
-/* Event Badge */
-.event-badge {
+  /* Event badge inside the calendar cell */
+  .event-badge {
     position: absolute;
-    top: 5px; /* Slightly near the top */
-    right: 5px; /* Near the right edge */
-    background-color: #3498db; /* Soft blue for a minimal and modern look */
-    color: #ffffff;
-    border-radius: 50%; /* Circular shape */
-    width: 18px; /* Optimal size for minimalism */
+    top: 5px;
+    right: 5px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
     height: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.75rem; /* Smaller, subtle font size */
+    font-size: 0.75rem;
     font-weight: bold;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
-    transition: transform 0.2s ease, box-shadow 0.3s ease; /* Smooth hover effect */
-    z-index: 2; /* Ensures it appears above other elements */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.3s;
+    z-index: 2; /* Ensure it's above other content */
   }
   
-  /* Hover effect for badges */
   .event-badge:hover {
-    transform: scale(1.2); /* Slight zoom on hover */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
-    background-color: #005085; /* Slightly darker shade on hover */
+    transform: scale(1.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    background-color: #005085;
   }
   
-  
-  
-  
-  /* Responsive Design */
+  /* Responsive adjustments */
   @media (max-width: 768px) {
     .calendar-grid {
-      grid-template-columns: repeat(4, 1fr); /* Adjust to 4 columns on smaller screens */
-      gap: 6px; /* Reduce gaps for smaller viewports */
+      grid-template-columns: repeat(4, 1fr); /* 4 columns for smaller screens */
+      gap: 6px;
     }
   
     .calendar-cell {
-      height: 80px; /* Adjust cell height for smaller screens */
+      height: 80px;
     }
   }
   
   @media (max-width: 480px) {
     .calendar-grid {
-      grid-template-columns: repeat(2, 1fr); /* Adjust to 2 columns on very small screens */
-      gap: 4px; /* Minimize gaps for compact design */
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for very small screens */
+      gap: 4px;
     }
   
     .calendar-cell {
-      height: 60px; /* Adjust cell height for very small screens */
+      height: 60px;
     }
   
     .calendar-cell.today {
-      font-size: 0.9rem; /* Scale text down for smaller cells */
+      font-size: 0.9rem;
     }
   }
   

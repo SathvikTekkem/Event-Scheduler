@@ -1,7 +1,4 @@
-/* CalendarHeader.css */
-
-
-/* Calendar Container */
+/* Calendar container setup */
 .calendar-container {
     display: flex;
     flex-direction: column;
@@ -12,21 +9,22 @@
     padding: 10px;
   }
   
+  /* Header style for the calendar */
   .calendar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 15px;
+    padding: 24px 15px;
     font-size: 1.2rem;
-    color: #ffffff;
+    color: #fff;
     margin-bottom: 20px;
     width: 100%;
-    background-color: #ffffff;
-    padding: 24px;
+    background-color: #fff;
+    border: 1px solid #00225033;
     border-radius: 16px;
-    border: #00225033 solid;
   }
   
+  /* Month title centered in the header */
   .calendar-month-title {
     flex-grow: 1;
     font-size: 1.5rem;
@@ -34,12 +32,12 @@
     color: #00285c;
   }
   
+  /* Buttons in the header */
   .calendar-header button {
-    background-color: #ffffff;
+    background-color: #fff;
     color: #646464;
-    border: none;
-    padding: 8px;
     border: 1px solid #e4e4e4;
+    padding: 8px;
     font-size: 1.2rem;
     cursor: pointer;
     border-radius: 8px;
@@ -48,8 +46,9 @@
     min-width: 50px;
   }
   
+  /* Hover effect for buttons */
   .calendar-header button:hover {
     background-color: #0058cc;
-    color: #ffffff;
+    color: #fff;
   }
   

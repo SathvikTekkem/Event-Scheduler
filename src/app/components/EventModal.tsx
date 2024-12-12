@@ -61,7 +61,6 @@ const EventModal: React.FC<EventModalProps> = ({
     <div className="modal" onClick={handleClose}>
       <div className="modal-content" onClick={handleModalClick}>
       <h3>Events for {new Date(selectedDate).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}</h3>
-
         {eventsForDay.length > 0 ? (
           <ul className="event-list">
             {eventsForDay.map((event) => (

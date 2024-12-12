@@ -34,15 +34,51 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i); // 5 years before and after current year
   const months = Array.from({ length: 12 }, (_, i) => i + 1);
-  const days = Array.from(
-    { length: daysInMonth(addEventDate.month, addEventDate.year) },
-    (_, i) => i + 1
-  );
-
   const monthNames = [
     "January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"
   ];
+
+  // Get valid days for the selected month and year
+  const getValidDays = (month: number, year: number) => {
+    return Array.from({ length: daysInMonth(month, year) }, (_, i) => i + 1);
+  };
+
+  const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedMonth = parseInt(e.target.value);
+    const daysInSelectedMonth = daysInMonth(selectedMonth, addEventDate.year);
+
+    // Ensure day is within the valid range for the new month
+    const newDay = addEventDate.day > daysInSelectedMonth ? daysInSelectedMonth : addEventDate.day;
+
+    setAddEventDate((prev) => ({
+      ...prev,
+      month: selectedMonth,
+      day: newDay,
+    }));
+  };
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedYear = parseInt(e.target.value);
+    const daysInSelectedMonth = daysInMonth(addEventDate.month, selectedYear);
+
+    // Ensure day is within the valid range for the new year
+    const newDay = addEventDate.day > daysInSelectedMonth ? daysInSelectedMonth : addEventDate.day;
+
+    setAddEventDate((prev) => ({
+      ...prev,
+      year: selectedYear,
+      day: newDay,
+    }));
+  };
+
+  const handleDayChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedDay = parseInt(e.target.value);
+    setAddEventDate((prev) => ({
+      ...prev,
+      day: selectedDay,
+    }));
+  };
 
   const handleAddEvent = () => {
     onSubmit(); // Call the add event logic
@@ -57,14 +93,9 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
           <label>Day:</label>
           <select
             value={addEventDate.day}
-            onChange={(e) =>
-              setAddEventDate((prev) => ({
-                ...prev,
-                day: parseInt(e.target.value),
-              }))
-            }
+            onChange={handleDayChange}
           >
-            {days.map((day) => (
+            {getValidDays(addEventDate.month, addEventDate.year).map((day) => (
               <option key={day} value={day}>
                 {day}
               </option>
@@ -73,16 +104,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
         </div>
         <div className="form-group-month">
           <label>Month:</label>
-          <select
-            value={addEventDate.month}
-            onChange={(e) =>
-              setAddEventDate((prev) => ({
-                ...prev,
-                month: parseInt(e.target.value),
-                day: 1, // Reset day to 1 to prevent invalid dates
-              }))
-            }
-          >
+          <select value={addEventDate.month} onChange={handleMonthChange}>
             {months.map((month) => (
               <option key={month} value={month}>
                 {monthNames[month - 1]} {/* Convert number to month name */}
@@ -92,16 +114,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
         </div>
         <div className="form-group-year">
           <label>Year:</label>
-          <select
-            value={addEventDate.year}
-            onChange={(e) =>
-              setAddEventDate((prev) => ({
-                ...prev,
-                year: parseInt(e.target.value),
-                day: 1, // Reset day to 1 to prevent invalid dates
-              }))
-            }
-          >
+          <select value={addEventDate.year} onChange={handleYearChange}>
             {years.map((year) => (
               <option key={year} value={year}>
                 {year}

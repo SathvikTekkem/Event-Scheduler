@@ -1,6 +1,3 @@
-/* Calendar.css */
-
-
 /* General Styles */
 body {
   background-color: #eeeeee;
@@ -10,7 +7,7 @@ body {
   box-sizing: border-box;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
-  /* Use flexbox to center everything */
+  /* Center the content vertically and horizontally */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +19,13 @@ body {
   box-sizing: border-box;
 }
 
-.Title{
+/* Title styling */
+.Title {
   color: #323232;
 }
 
-.project-container{
+/* Container for the project, with background and border styling */
+.project-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,34 +34,32 @@ body {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  border: #d4d4d4 solid;
+  border: 1px solid #d4d4d4; /* Border color */
   border-radius: 24px;
+  padding: 20px;
 }
 
-/* Add styles for the reset button */
+/* Reset button styling */
 .reset-btn {
-  background-color: #003880; /* Red color for emphasis */
+  background-color: #003880; /* Primary button color */
   color: white;
   padding: 10px 20px;
   border-radius: 24px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: 2px solid;
-  border-color: #2682fb;
+  border: 2px solid #2682fb;
   margin-top: 10px;
 }
 
 .reset-btn:hover {
-  background-color: #2682fb; /* Darker red on hover */
+  background-color: #2682fb; /* Change color on hover */
 }
 
-
-/* Add styles for the add event button */
-.add-eventP-btn{
-  background-color: #003880 ; 
-  border: 3px solid;
-  border-color: #2682fb;
+/* Add event button styling */
+.add-eventP-btn {
+  background-color: #003880;
+  border: 3px solid #2682fb; /* Button border color */
   color: white;
   padding: 10px 20px;
   border-radius: 24px;
@@ -73,11 +70,11 @@ body {
 }
 
 .add-eventP-btn:hover {
-  background-color: #2682fb; 
+  background-color: #2682fb; /* Change color on hover */
 }
 
-
-.button-group{
+/* Button group layout with space between buttons */
+.button-group {
   display: flex;
   align-items: center;
   justify-content: space-between;

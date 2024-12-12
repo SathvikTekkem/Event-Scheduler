@@ -1,14 +1,12 @@
-/* EventModal.css*/
-
-/* Modal Styles */
+/* Modal styling */
 .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ffffff;
+    background-color: #fff;
     padding: 20px;
-    border: 1px #a8a8a8 solid;
+    border: 1px solid #a8a8a8;
     border-radius: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -18,38 +16,40 @@
     width: auto;
     max-width: 90%;
     min-width: 300px;
-    color: #333333;
+    color: #333;
   }
-
+  
+  /* Modal content layout */
   .modal-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    width: 100%; /* Fit content to modal */
-    max-height: 80vh; /* Prevent the modal from exceeding viewport height */
-    height: auto; /* Add scrolling if content exceeds height */
-}
-
-.selected-date-container {
+    width: 100%;
+    max-height: 80vh; /* Limit height for better responsiveness */
+    height: auto;
+  }
+  
+  .selected-date-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Full width for the date and button alignment */
-}
-
+    width: 100%;
+  }
   
+  /* Modal title style */
   .modal h3 {
     margin-bottom: 15px;
     font-size: 1.2rem;
     color: #909090;
   }
   
+  /* Input and textarea styling */
   .modal input,
   .modal textarea {
     background-color: #f3f3f3;
-    color: rgb(110, 109, 109);
+    color: #6e6d6d;
     border: 1px solid #e1e1e1;
     padding: 10px;
     border-radius: 5px;
@@ -59,6 +59,7 @@
     margin-bottom: 15px;
   }
   
+  /* Input focus and placeholder styling */
   .modal input:focus,
   .modal textarea:focus {
     outline: none;
@@ -68,83 +69,78 @@
   
   input::placeholder,
   textarea::placeholder {
-    color: #888888;
+    color: #888;
   }
   
-  
-/* Modal Buttons */
-.modal-btn {
-    color: white;
-    border: 1px solid;
-    border-color: #006efe;
+  /* Button styling */
+  .modal-btn {
+    color: #fff;
+    border: 1px solid #006efe;
     padding: 12px 20px;
     font-size: 1rem;
     cursor: pointer;
     border-radius: 24px;
     margin-top: 10px;
     transition: background-color 0.3s ease;
-  }
-  
-  .add-event-btn {
-    background-color: #003880; /* Green for Add/Save */
     width: 100%;
   }
   
+  .add-event-btn {
+    background-color: #003880;
+  }
+  
   .add-event-btn:hover {
-    background-color: #002c64; /* Darker green on hover */
+    background-color: #002c64;
     border-color: transparent;
   }
   
   .close-modal-btn {
     background-color: transparent;
-    color: #333333;
-    font-size: 1.0rem;
+    color: #333;
+    font-size: 1rem;
     border: none;
     cursor: pointer;
   }
   
   .close-modal-btn:hover {
-    color: #ff0000; /* Red hover effect */
+    color: #ff0000;
   }
   
-
-/* Event List */
-
+  /* Event list container */
   .event-list {
     width: 100%;
     max-height: 300px;
     overflow-y: auto;
     padding: 0;
     border: 1px solid #eaeaea;
-    border-bottom: 0px;
-    border-radius: 8px ;
-    overflow: hidden;
+    border-bottom: 0;
+    border-radius: 8px;
   }
   
-  
+  /* Individual event item styling */
   .event-list-item {
     display: flex;
     justify-content: space-between;
     gap: 24px;
-    width: 100%; /* Take full width */
-    background-color: #ffffff;
+    width: 100%;
+    background-color: #fff;
     color: #595959;
     padding: 10px;
-    border-radius: 0px;
     border-bottom: 1px solid #eaeaea;
-    white-space: nowrap; /* Ensure text doesn't overflow */
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
   
+  /* Event list item bold text */
   .event-list-item strong {
     font-weight: bold;
   }
   
-  /* Event Actions */
+  /* Event action buttons */
   .edit-event-button,
-  .delete-event-button, .save-event-button {
+  .delete-event-button,
+  .save-event-button {
     border: none;
     padding: 6px 10px;
     font-size: 0.9rem;
@@ -153,7 +149,7 @@
   }
   
   .edit-event-button {
-    background-color: rgb(255, 187, 59);
+    background-color: #ffbb3b;
     margin-right: 8px;
     color: #3c2f2f;
   }
@@ -161,20 +157,19 @@
   .edit-event-button:hover {
     background-color: darkorange;
   }
-
+  
   .save-event-button {
-    height: 40px;
-    padding: 0px 16px;
-    background-color: rgb(0, 135, 0);
+    background-color: #008700;
     margin-right: 8px;
-    color: #ffffff;
-    border-radius: 8px;
+    height: 35px;
+    padding: 0px 16px;
+    color: #fff;
   }
   
-.save-event-button:hover{
+  .save-event-button:hover {
     background-color: #005b0b;
-}
-
+  }
+  
   .delete-event-button {
     background-color: red;
     color: white;
@@ -183,15 +178,16 @@
   .delete-event-button:hover {
     background-color: darkred;
   }
-
   
+  /* Responsive adjustments for smaller screens */
   @media (max-width: 768px) {
     .modal {
-        width: auto; /* Almost full width for small screens */
-        min-width: 320px;
+      width: auto;
+      min-width: 320px;
     }
-
+  
     .modal-btn {
-        font-size: 0.9rem; /* Slightly smaller font for buttons */
+      font-size: 0.9rem;
     }
-}
+  }
+  
