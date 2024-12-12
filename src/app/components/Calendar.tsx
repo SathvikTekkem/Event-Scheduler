@@ -33,9 +33,8 @@ const Calendar: React.FC = () => {
   const handlePrevYear = () => setDate(new Date(date.getFullYear() - 1, date.getMonth(), 1));
   const handleNextYear = () => setDate(new Date(date.getFullYear() + 1, date.getMonth(), 1));
 
-  const handleDateClick = (day: number) => {
-    const clickedDate = new Date(date.getFullYear(), date.getMonth(), day);
-    setSelectedDate(clickedDate.toISOString().split("T")[0]);
+  const handleDateClick = (formattedDate: string) => {
+    setSelectedDate(formattedDate); // Use the passed full formatted date
     setNewEvent(""); // Reset the event input field
   };
 
@@ -46,7 +45,6 @@ const Calendar: React.FC = () => {
         { id: Date.now().toString(), date: selectedDate, description: newEvent },
       ]);
       setNewEvent(""); // Clear the input field
-      setSelectedDate(null); // Close modal
     }
   };
 
@@ -102,9 +100,9 @@ const Calendar: React.FC = () => {
   return (
     <div className="project-container">
       <div className="Title">
-      <h3>Schedule your event</h3>
+        <h3>Schedule your event</h3>
       </div>
-<div className="button-group">
+      <div className="button-group">
         <button className="reset-btn" onClick={handleResetToToday}>
           Go to Today's Date
         </button>
@@ -113,14 +111,14 @@ const Calendar: React.FC = () => {
         </button>
       </div>
       <div className="calendar-container">
-      <CalendarHeader
-        date={date}
-        onPrevMonth={handlePrevMonth}
-        onNextMonth={handleNextMonth}
-        onPrevYear={handlePrevYear}
-        onNextYear={handleNextYear}
-      />
-      <CalendarGrid date={date} events={events} onDateClick={handleDateClick} />
+        <CalendarHeader
+          date={date}
+          onPrevMonth={handlePrevMonth}
+          onNextMonth={handleNextMonth}
+          onPrevYear={handlePrevYear}
+          onNextYear={handleNextYear}
+        />
+        <CalendarGrid date={date} events={events} onDateClick={handleDateClick} /> {/* Pass updated handler */}
       </div>
 
       {/* Modal for Adding/Editing Event by Clicking on Date */}
@@ -138,7 +136,7 @@ const Calendar: React.FC = () => {
           editingEventId={editingEventId}
         />
       )}
-      
+
       {/* Modal for Adding Event via "Add Event" Button */}
       {isAddEventModalOpen && (
         <AddEventModal

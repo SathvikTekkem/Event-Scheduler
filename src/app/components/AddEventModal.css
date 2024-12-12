@@ -11,6 +11,7 @@
     justify-content: space-evenly; /* Evenly distribute space between elements */
     background-color: #ffffff;
     color: #003880;
+    border: 1px solid #e8e8e8;
     border-radius: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     width: 100%;
@@ -109,6 +110,7 @@ textarea {
 @media (max-width: 480px) {
     .modal-add-event {
         padding: 10px;
+        margin: 20px;
     }
 
     select, input, textarea, .modal-btn-add-event {

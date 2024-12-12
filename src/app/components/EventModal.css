@@ -149,11 +149,11 @@
     padding: 6px 10px;
     font-size: 0.9rem;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
   }
   
   .edit-event-button {
-    background-color: orange;
+    background-color: rgb(255, 187, 59);
     margin-right: 8px;
     color: #3c2f2f;
   }
