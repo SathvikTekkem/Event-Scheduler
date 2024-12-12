@@ -34,7 +34,7 @@
 /* Select dropdown with custom arrow */
 select {
     appearance: none;
-    background: #fff url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 fill%3D%22%23fff%22 viewBox%3D%220 0 24 24%22%3E%3Cpath d%3D%22M7.41%208.84%20L12%2013.41%2016.59%208.84%2018%2010.25%2012%2016.25%206%2010.25z%22/%3E%3C/svg%3E') no-repeat right 10px center;
+    background: #f1f1f1 url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 fill%3D%22%23fff%22 viewBox%3D%220 0 24 24%22%3E%3Cpath d%3D%22M7.41%208.84%20L12%2013.41%2016.59%208.84%2018%2010.25%2012%2016.25%206%2010.25z%22/%3E%3C/svg%3E') no-repeat right 10px center;
     background-size: 16px;
     padding: 10px 40px 10px 10px;
     font-size: 1rem;
@@ -50,7 +50,7 @@ input, .modal-btn-add-event, textarea {
     font-size: 1rem;
     border: 1px solid #e3e3e3;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #f1f1f1;
     color: rgb(72, 72, 72);
     box-sizing: border-box;
 }
@@ -82,7 +82,7 @@ textarea {
     right: 10px;
     background: transparent;
     color: #3e3e3e;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     border: none;
     cursor: pointer;
 }

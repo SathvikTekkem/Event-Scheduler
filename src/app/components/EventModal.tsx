@@ -56,10 +56,20 @@ const EventModal: React.FC<EventModalProps> = ({
     }
   };
 
+  const formatSelectedDate = (date: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    };
+    const formattedDate = new Date(date).toLocaleDateString('en-GB', options); // Change locale to 'en-GB' for '12 Jan 2024'
+    return formattedDate;
+  };
+
   return (
     <div className="modal">
       <div className="modal-content">
-        <h3>Events for {selectedDate}</h3>
+        <h3>Events for {formatSelectedDate(selectedDate)}</h3>
 
         {/* List of existing events */}
         <div className="event-list">
