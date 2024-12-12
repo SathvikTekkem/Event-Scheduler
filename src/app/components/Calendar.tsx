@@ -34,8 +34,8 @@ const Calendar: React.FC = () => {
   const handleNextYear = () => setDate(new Date(date.getFullYear() + 1, date.getMonth(), 1));
 
   const handleDateClick = (formattedDate: string) => {
-    setSelectedDate(formattedDate); // Use the passed full formatted date
-    setNewEvent(""); // Reset the event input field
+    setSelectedDate(formattedDate); // Using the passed full formatted date
+    setNewEvent(""); // Resetting the event input field
   };
 
   const handleAddEvent = () => {
@@ -44,7 +44,7 @@ const Calendar: React.FC = () => {
         ...prevEvents,
         { id: Date.now().toString(), date: selectedDate, description: newEvent.trim() },
       ]);
-      setNewEvent(""); // Reset input for adding events
+      setNewEvent(""); // Resetting input for adding events
     }
   };
   
@@ -58,20 +58,20 @@ const Calendar: React.FC = () => {
         event.id === id ? { ...event, description: updatedDescription.trim() } : event
       )
     );
-    setEditingEventId(null); // Reset editing state
+    setEditingEventId(null); // Resetting editing state
   };  
 
   const handleDeleteEvent = (id: string) => setEvents(events.filter((event) => event.id !== id));
 
   const handleCloseModal = () => {
-    setSelectedDate(null); // Reset selectedDate
-    setNewEvent(""); // Clear the event input
-    setEditingEventId(null); // Reset editing state
+    setSelectedDate(null); // Resetting selectedDate
+    setNewEvent(""); // Clearing the event input
+    setEditingEventId(null); // Resetting editing state
   };
 
   const handleResetToToday = () => {
-    setDate(new Date()); // Set the date to today's date
-    setSelectedDate(null); // Optionally reset the selected date as well
+    setDate(new Date()); // Setting the date to today's date
+    setSelectedDate(null); // Optionally resetting the selected date as well
   };
 
   // Handlers for Add Event Modal

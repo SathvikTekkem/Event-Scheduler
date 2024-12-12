@@ -10,14 +10,14 @@ interface Event {
 interface CalendarGridProps {
   date: Date;
   events: Event[];
-  onDateClick: (formattedDate: string) => void; // Ensure this expects a string
+  onDateClick: (formattedDate: string) => void; // Expecting a string
 }
 
 const getDateWithoutTime = (date: Date): string => {
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const day = date.getDate().toString().padStart(2, "0");
-  return `${year}-${month}-${day}`; // Return in YYYY-MM-DD format
+  return `${year}-${month}-${day}`; // Returning in YYYY-MM-DD format
 };
 
 const CalendarGrid: React.FC<CalendarGridProps> = ({ date, events, onDateClick }) => {
@@ -28,12 +28,12 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ date, events, onDateClick }
   const currentDate = new Date();
   const currentDayFormatted = getDateWithoutTime(currentDate);
 
-  // Add empty cells for the first week (before the first day of the month)
+  // Adding empty cells for the first week (before the first day of the month)
   for (let i = 0; i < firstDayIndex; i++) {
     days.push(<div key={`empty-${i}`} className="calendar-cell empty"></div>);
   }
 
-  // Add cells for each day in the month
+  // Adding cells for each day in the month
   for (let i = 1; i <= daysInMonth; i++) {
     const currentDayDate = new Date(date.getFullYear(), date.getMonth(), i);
     const currentDateFormatted = getDateWithoutTime(currentDayDate); // Full formatted date

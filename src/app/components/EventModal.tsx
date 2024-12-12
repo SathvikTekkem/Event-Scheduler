@@ -35,7 +35,7 @@ const EventModal: React.FC<EventModalProps> = ({
   const [editedDescription, setEditedDescription] = useState<string>("");
 
   useEffect(() => {
-    // Pre-fill the description when editing
+    // Pre-filling the description when editing
     if (editingEventId) {
       const eventToEdit = events.find((event) => event.id === editingEventId);
       setEditedDescription(eventToEdit?.description || "");
@@ -112,7 +112,7 @@ const EventModal: React.FC<EventModalProps> = ({
           }
         />
 
-        {/* Conditionally render Add/Save button */}
+        {/* Conditionally rendering Add/Save button */}
         <div className="button-group">
           {editingEventId ? (
             <button
@@ -133,7 +133,7 @@ const EventModal: React.FC<EventModalProps> = ({
           )}
         </div>
 
-        {/* Close button remains at the bottom */}
+        {/* Keeping Close button at the bottom */}
         <button className="close-modal-btn" onClick={onClose}>
           Close
         </button>

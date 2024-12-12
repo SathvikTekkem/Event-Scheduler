@@ -39,7 +39,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
     "August", "September", "October", "November", "December"
   ];
 
-  // Get valid days for the selected month and year
+  // Getting valid days for the selected month and year
   const getValidDays = (month: number, year: number) => {
     return Array.from({ length: daysInMonth(month, year) }, (_, i) => i + 1);
   };
@@ -48,7 +48,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
     const selectedMonth = parseInt(e.target.value);
     const daysInSelectedMonth = daysInMonth(selectedMonth, addEventDate.year);
 
-    // Ensure day is within the valid range for the new month
+    // checking if day is within the valid range for the new month
     const newDay = addEventDate.day > daysInSelectedMonth ? daysInSelectedMonth : addEventDate.day;
 
     setAddEventDate((prev) => ({
@@ -62,7 +62,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
     const selectedYear = parseInt(e.target.value);
     const daysInSelectedMonth = daysInMonth(addEventDate.month, selectedYear);
 
-    // Ensure day is within the valid range for the new year
+    // checking if day is within the valid range for the new year
     const newDay = addEventDate.day > daysInSelectedMonth ? daysInSelectedMonth : addEventDate.day;
 
     setAddEventDate((prev) => ({
@@ -81,8 +81,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
   };
 
   const handleAddEvent = () => {
-    onSubmit(); // Call the add event logic
-    onClose(); // Close the modal immediately after
+    onSubmit(); // Calling the add event logic
+    onClose(); // Closing the modal immediately after
   };
 
   return (
@@ -107,7 +107,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
           <select value={addEventDate.month} onChange={handleMonthChange}>
             {months.map((month) => (
               <option key={month} value={month}>
-                {monthNames[month - 1]} {/* Convert number to month name */}
+                {monthNames[month - 1]} {/* Converting number to month name */}
               </option>
             ))}
           </select>
