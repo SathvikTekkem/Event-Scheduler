@@ -64,30 +64,34 @@
     cursor: default;
   }
   
-  /* Event Badge */
-  .event-badge {
+/* Event Badge */
+.event-badge {
     position: absolute;
-    top: 8px; /* Position near the top */
-    right: 8px; /* Position near the right edge */
-    background-color: #ff3b30; /* Vibrant red for visibility */
+    top: 5px; /* Slightly near the top */
+    right: 5px; /* Near the right edge */
+    background-color: #3498db; /* Soft blue for a minimal and modern look */
     color: #ffffff;
     border-radius: 50%; /* Circular shape */
-    width: 18px; /* Slightly larger for better visibility */
+    width: 18px; /* Optimal size for minimalism */
     height: 18px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.8rem; /* Optional: add a number or letter inside the badge */
+    font-size: 0.75rem; /* Smaller, subtle font size */
     font-weight: bold;
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    transition: transform 0.2s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    z-index: 2; /* Ensures it appears above other elements */
   }
   
-  /* Optional hover effect for badges */
+  /* Hover effect for badges */
   .event-badge:hover {
     transform: scale(1.2); /* Slight zoom on hover */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+    background-color: #005085; /* Slightly darker shade on hover */
   }
+  
+  
   
   
   /* Responsive Design */
