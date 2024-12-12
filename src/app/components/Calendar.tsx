@@ -108,7 +108,7 @@ const Calendar: React.FC = () => {
             alt="Add Icon"
             className="add-event-icon"
           />
-          Add Event
+          Create Event
         </button>
       </div>
       <div className="calendar-container">
