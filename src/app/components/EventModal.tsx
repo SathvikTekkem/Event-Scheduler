@@ -3,7 +3,7 @@ import "./EventModal.css";
 
 interface Event {
   id: string;
-  date: string;
+  date: string; // e.g., "2024-12-12"
   description: string;
 }
 
@@ -11,13 +11,13 @@ interface EventModalProps {
   selectedDate: string;
   events: Event[];
   newEvent: string;
-  setNewEvent: (value: string) => void;
+  setNewEvent: React.Dispatch<React.SetStateAction<string>>;
   onAddEvent: () => void;
   onSaveChanges: (id: string, updatedDescription: string) => void;
   onClose: () => void;
   onEditEvent: (event: Event) => void;
   onDeleteEvent: (id: string) => void;
-  editingEventId: string | null; // Track if we are editing
+  editingEventId: string | null;
 }
 
 const EventModal: React.FC<EventModalProps> = ({
@@ -32,92 +32,99 @@ const EventModal: React.FC<EventModalProps> = ({
   onDeleteEvent,
   editingEventId,
 }) => {
-  const [editedDescription, setEditedDescription] = useState("");
-
-  const eventsForDay = events.filter((event) => event.date === selectedDate);
+  const [editedDescription, setEditedDescription] = useState<string>("");
 
   useEffect(() => {
+    // Pre-fill the description when editing
     if (editingEventId) {
       const eventToEdit = events.find((event) => event.id === editingEventId);
-      setEditedDescription(eventToEdit ? eventToEdit.description : "");
+      setEditedDescription(eventToEdit?.description || "");
     } else {
       setEditedDescription("");
     }
   }, [editingEventId, events]);
 
-  const handleModalClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleSaveClick = () => {
+    if (editingEventId && editedDescription.trim()) {
+      onSaveChanges(editingEventId, editedDescription);
+    }
   };
 
-  const handleClose = () => {
-    onClose();
-  };
-
-  const handleSaveClick = (id: string) => {
-    onSaveChanges(id, editedDescription);
+  const handleAddClick = () => {
+    if (!editingEventId && newEvent.trim()) {
+      onAddEvent();
+    }
   };
 
   return (
-    <div className="modal" onClick={handleClose}>
-      <div className="modal-content" onClick={handleModalClick}>
-      <h3>Events for {new Date(selectedDate).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}</h3>
-        {eventsForDay.length > 0 ? (
-          <ul className="event-list">
-            {eventsForDay.map((event) => (
-              <li key={event.id} className="event-list-item">
-                {editingEventId === event.id ? (
-                  <>
-                    <input
-                      type="text"
-                      value={editedDescription}
-                      onChange={(e) => setEditedDescription(e.target.value)}
-                      className="edit-input"
-                    />
-                    <button
-                      onClick={() => handleSaveClick(event.id)}
-                      className="save-event-button"
-                    >
-                      Save
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <strong>{event.description}</strong>
-                    <div className="event-actions">
-                      <button
-                        onClick={() => onEditEvent(event)}
-                        className="edit-event-button"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => onDeleteEvent(event.id)}
-                        className="delete-event-button"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No events for this day.</p>
-        )}
+    <div className="modal">
+      <div className="modal-content">
+        <h3>Events for {selectedDate}</h3>
+
+        {/* List of existing events */}
+        <div className="event-list">
+          {events.map((event) => (
+            <div
+              key={event.id}
+              className={`event-list-item ${editingEventId === event.id ? "highlighted" : ""}`}
+              onClick={() => onEditEvent(event)}
+            >
+              <span>{event.description}</span>
+              <div>
+                <button
+                  className="edit-event-button"
+                  onClick={() => onEditEvent(event)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="delete-event-button"
+                  onClick={() => onDeleteEvent(event.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Input for adding/editing events */}
         <input
           type="text"
-          value={newEvent}
-          onChange={(e) => setNewEvent(e.target.value)}
-          placeholder="Event description"
+          value={editingEventId ? editedDescription : newEvent}
+          onChange={(e) =>
+            editingEventId
+              ? setEditedDescription(e.target.value)
+              : setNewEvent(e.target.value)
+          }
+          placeholder={
+            editingEventId ? "Edit event description" : "Add event description"
+          }
         />
-        <button
-          className="modal-btn add-event-btn"
-          onClick={editingEventId ? undefined : onAddEvent}
-        >
-          {editingEventId ? "Save Changes" : "Add Event"}
-        </button>
-        <button className="modal-btn close-modal-btn" onClick={handleClose}>
+
+        {/* Conditionally render Add/Save button */}
+        <div className="button-group">
+          {editingEventId ? (
+            <button
+              className="modal-btn save-event-button"
+              onClick={handleSaveClick}
+              disabled={!editedDescription.trim()}
+            >
+              Save Changes
+            </button>
+          ) : (
+            <button
+              className="modal-btn add-event-btn"
+              onClick={handleAddClick}
+              disabled={!newEvent.trim()}
+            >
+              Add Event
+            </button>
+          )}
+        </div>
+
+        {/* Close button remains at the bottom */}
+        <button className="close-modal-btn" onClick={onClose}>
           Close
         </button>
       </div>

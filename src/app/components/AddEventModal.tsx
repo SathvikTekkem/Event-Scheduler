@@ -88,7 +88,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
   return (
     <div className="modal-add-event">
       <div className="modal-add-event-content">
-        <h3>Add Event</h3>
+        <h3>Schedule an Event</h3>
         <div className="form-group-day">
           <label>Day:</label>
           <select

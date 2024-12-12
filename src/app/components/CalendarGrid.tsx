@@ -50,7 +50,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ date, events, onDateClick }
         <span>{i}</span>
         {eventCount > 0 && (
           <div className="badge-wrapper">
-            <div className="event-badge">{eventCount}</div>
+            <div className="event-badge" title={`Events on this date: ${eventCount}`}>{eventCount}</div>
           </div>
         )}
       </div>

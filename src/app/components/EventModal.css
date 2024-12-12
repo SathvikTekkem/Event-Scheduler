@@ -17,6 +17,7 @@
     max-width: 90%;
     min-width: 300px;
     color: #333;
+    z-index: 99;
   }
   
   /* Modal content layout */
@@ -131,6 +132,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  .event-list-item.highlighted {
+    background-color: #f0f0f0;
+    border-left: 4px solid #006efe; /* Highlight border */
+  }
   
   /* Event list item bold text */
   .event-list-item strong {
@@ -159,11 +165,16 @@
   }
   
   .save-event-button {
-    background-color: #008700;
-    margin-right: 8px;
-    height: 35px;
-    padding: 0px 16px;
     color: #fff;
+    border: 1px solid #00c735;
+    background-color: #005b0b;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 24px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    width: 100%;
   }
   
   .save-event-button:hover {

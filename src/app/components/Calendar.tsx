@@ -39,31 +39,27 @@ const Calendar: React.FC = () => {
   };
 
   const handleAddEvent = () => {
-    if (selectedDate && newEvent) {
+    if (selectedDate && newEvent.trim()) {
       setEvents((prevEvents) => [
         ...prevEvents,
-        { id: Date.now().toString(), date: selectedDate, description: newEvent },
+        { id: Date.now().toString(), date: selectedDate, description: newEvent.trim() },
       ]);
-      setNewEvent(""); // Clear the input field
+      setNewEvent(""); // Reset input for adding events
     }
   };
-
+  
   const handleEditEvent = (event: Event) => {
-    setEditingEventId(event.id); // Set the event being edited
-    setNewEvent(event.description); // Set the input field with the current description
+    setEditingEventId(event.id);
   };
-
-  const handleSaveChanges = () => {
-    if (editingEventId && newEvent) {
-      setEvents((prevEvents) =>
-        prevEvents.map((event) =>
-          event.id === editingEventId ? { ...event, description: newEvent } : event
-        )
-      );
-      setEditingEventId(null); // Reset editing state
-      setNewEvent(""); // Clear input
-    }
-  };
+  
+  const handleSaveChanges = (id: string, updatedDescription: string) => {
+    setEvents((prevEvents) =>
+      prevEvents.map((event) =>
+        event.id === id ? { ...event, description: updatedDescription.trim() } : event
+      )
+    );
+    setEditingEventId(null); // Reset editing state
+  };  
 
   const handleDeleteEvent = (id: string) => setEvents(events.filter((event) => event.id !== id));
 
@@ -107,6 +103,11 @@ const Calendar: React.FC = () => {
           Go to Today's Date
         </button>
         <button className="add-eventP-btn" onClick={handleOpenAddEventModal}>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2997/2997933.png"
+            alt="Add Icon"
+            className="add-event-icon"
+          />
           Add Event
         </button>
       </div>

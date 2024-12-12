@@ -58,6 +58,9 @@ body {
 
 /* Add event button styling */
 .add-eventP-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #003880;
   border: 3px solid #2682fb; /* Button border color */
   color: white;
@@ -72,6 +75,20 @@ body {
 .add-eventP-btn:hover {
   background-color: #2682fb; /* Change color on hover */
 }
+
+.add-event-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  /* Additional styling */
+  filter: invert(1); /* Example: Adjusts icon color */
+  transition: transform 0.2s; /* Adds animation on hover */
+}
+
+.add-event-btn:hover .add-event-icon {
+  transform: scale(1.2); /* Makes the icon grow slightly on hover */
+}
+
 
 /* Button group layout with space between buttons */
 .button-group {
