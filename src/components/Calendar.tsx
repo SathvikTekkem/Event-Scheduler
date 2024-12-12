@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Event } from "@/pages/interfaces";
+import { Event } from "@/components/interfaces";
 import CalendarHeader from "./CalendarHeader";
 import CalendarGrid from "./CalendarGrid";
 import EventModal from "./EventModal";

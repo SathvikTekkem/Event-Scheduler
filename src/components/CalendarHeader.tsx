@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarHeaderProps } from "@/pages/interfaces";
+import { CalendarHeaderProps } from "@/components/interfaces";
 import styles from "../styles/CalendarHeader.module.css"
 
 const CalendarHeader: React.FC<CalendarHeaderProps> = ({

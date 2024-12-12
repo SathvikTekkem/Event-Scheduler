@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/EventModal.module.css"
-import { Event, EventModalProps} from "@/pages/interfaces";
+import { Event, EventModalProps} from "@/components/interfaces";
 
 
 const EventModal: React.FC<EventModalProps> = ({

@@ -1,5 +1,5 @@
 import React from "react";
-import { Event, CalendarGridProps } from "@/pages/interfaces";
+import { Event, CalendarGridProps } from "@/components/interfaces";
 import styles from "../styles/CalendarGrid.module.css";
 
 

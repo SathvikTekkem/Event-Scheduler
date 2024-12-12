@@ -1,5 +1,5 @@
 import React from "react";
-import { AddEventModalProps } from "@/pages/interfaces";
+import { AddEventModalProps } from "@/components/interfaces";
 import styles from "../styles/AddEventModal.module.css"
 
 
