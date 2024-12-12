@@ -100,15 +100,11 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div className="calendar-container">
-      <CalendarHeader
-        date={date}
-        onPrevMonth={handlePrevMonth}
-        onNextMonth={handleNextMonth}
-        onPrevYear={handlePrevYear}
-        onNextYear={handleNextYear}
-      />
-      <div className="button-group">
+    <div className="project-container">
+      <div className="Title">
+      <h3>Schedule your event</h3>
+      </div>
+<div className="button-group">
         <button className="reset-btn" onClick={handleResetToToday}>
           Go to Today's Date
         </button>
@@ -116,8 +112,17 @@ const Calendar: React.FC = () => {
           Add Event
         </button>
       </div>
+      <div className="calendar-container">
+      <CalendarHeader
+        date={date}
+        onPrevMonth={handlePrevMonth}
+        onNextMonth={handleNextMonth}
+        onPrevYear={handlePrevYear}
+        onNextYear={handleNextYear}
+      />
       <CalendarGrid date={date} events={events} onDateClick={handleDateClick} />
-      
+      </div>
+
       {/* Modal for Adding/Editing Event by Clicking on Date */}
       {selectedDate && (
         <EventModal

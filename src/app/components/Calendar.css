@@ -1,43 +1,68 @@
+/* Calendar.css */
+
+
 /* General Styles */
 body {
-  background-color: #121212;
-  color: #e0e0e0;
-  font-family: Arial, sans-serif;
+  background-color: #eeeeee;
+  color: #f0f0f0;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  /* Use flexbox to center everything */
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 * {
   box-sizing: border-box;
 }
 
+.Title{
+  color: #323232;
+}
+
+.project-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border: #d4d4d4 solid;
+  border-radius: 24px;
+}
 
 /* Add styles for the reset button */
 .reset-btn {
-  background-color: #6b1000; /* Red color for emphasis */
+  background-color: #003880; /* Red color for emphasis */
   color: white;
   padding: 10px 20px;
   border-radius: 24px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: 1px solid;
-  border-color: #a00000;
+  border: 2px solid;
+  border-color: #2682fb;
   margin-top: 10px;
 }
 
 .reset-btn:hover {
-  background-color: #ff4d2b; /* Darker red on hover */
+  background-color: #2682fb; /* Darker red on hover */
 }
 
 
 /* Add styles for the add event button */
 .add-eventP-btn{
-  background-color: #909090 ; 
-  border: 1px solid;
-  border-color: #cbcbcb;
+  background-color: #003880 ; 
+  border: 3px solid;
+  border-color: #2682fb;
   color: white;
   padding: 10px 20px;
   border-radius: 24px;
@@ -48,7 +73,7 @@ body {
 }
 
 .add-eventP-btn:hover {
-  background-color: #b8b8b8; 
+  background-color: #2682fb; 
 }
 
 
@@ -56,7 +81,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 77%;
+  width: 90%;
   cursor: pointer;
   padding-bottom: 24px;
 }

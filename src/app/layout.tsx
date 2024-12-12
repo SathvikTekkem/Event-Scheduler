@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Header />
+        {/* <Header /> */}
         <main>{children}</main>
       </body>
     </html>

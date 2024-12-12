@@ -1,6 +1,6 @@
 import React from "react";
 import "./Calendar.css";
-import "./AddEventModal.css"
+import "./AddEventModal.css";
 
 interface AddEventModalProps {
   addEventDate: {
@@ -34,13 +34,20 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i); // 5 years before and after current year
   const months = Array.from({ length: 12 }, (_, i) => i + 1);
-  const days = Array.from({ length: daysInMonth(addEventDate.month, addEventDate.year) }, (_, i) => i + 1);
+  const days = Array.from(
+    { length: daysInMonth(addEventDate.month, addEventDate.year) },
+    (_, i) => i + 1
+  );
 
-  // Convert month index to month name
   const monthNames = [
-    "January", "February", "March", "April", "May", "June", "July", 
+    "January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"
   ];
+
+  const handleAddEvent = () => {
+    onSubmit(); // Call the add event logic
+    onClose(); // Close the modal immediately after
+  };
 
   return (
     <div className="modal-add-event">
@@ -112,7 +119,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
           />
         </div>
         <div>
-          <button className="modal-btn-add-event" onClick={onSubmit}>
+          <button className="modal-btn-add-event" onClick={handleAddEvent}>
             Add Event
           </button>
           <button className="modal-btn-close-modal" onClick={onClose}>

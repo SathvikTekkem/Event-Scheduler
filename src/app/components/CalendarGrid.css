@@ -1,68 +1,119 @@
-/* Calendar Grid */
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+/* CalendarGrid.css */
+
+/* Center the calendar grid within the parent container */
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-top: 1px solid;
+    border-color: #d4d4d4;
+    border-radius: 0px 0px 24px 24px;
   }
   
+  /* Calendar Grid */
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px; /* Slightly smaller gaps for a cleaner look */
+    width: 100%;
+    max-width: 800px; /* Center the grid and limit its width */
+  }
+  
+  /* Calendar Cells */
   .calendar-cell {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px;
-    width: 120px;
-    font-size: 1.1rem;
-    background-color: #333333;
-    border-radius: 5px;
+    height: 100px;
+    width: 100px;
+    border: #f9f9f9 1px solid;
+    font-size: 1rem;
+    background-color: #ffffff; /* Light background for a minimalist UI */
+    border-radius: 8px;
     cursor: pointer;
-    color: #ffffff;
+    color: #333333; /* Dark text for contrast */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     position: relative;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
   }
   
   .calendar-cell:hover {
-    background-color: #444444;
+    background-color: #e6e6e6; /* Slight hover effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
+
+
   
+  /* Highlight today's date */
   .calendar-cell.today {
-    background-color: #4c3fd3;
+    background-color: #0058cc; /* Blue highlight for today */
     color: white;
-    border-radius: 8px;
     font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 110, 254, 0.3);
   }
   
+  /* Empty cells for days outside the current month */
   .calendar-cell.empty {
     background-color: transparent;
+    cursor: default;
   }
   
   /* Event Badge */
-  .badge-wrapper {
-    position: relative;
-  }
-  
   .event-badge {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(90%);
-    background-color: #ff6347;
+    top: 8px; /* Position near the top */
+    right: 8px; /* Position near the right edge */
+    background-color: #ff3b30; /* Vibrant red for visibility */
     color: #ffffff;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    font-size: 0.5rem;
+    border-radius: 50%; /* Circular shape */
+    width: 18px; /* Slightly larger for better visibility */
+    height: 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 0.8rem; /* Optional: add a number or letter inside the badge */
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
   }
   
-  .event-badge:nth-child(n+2) {
-    top: 2px;
+  /* Optional hover effect for badges */
+  .event-badge:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
   }
   
-  .event-badge:nth-child(n+3) {
-    top: 4px;
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .calendar-grid {
+      grid-template-columns: repeat(4, 1fr); /* Adjust to 4 columns on smaller screens */
+      gap: 6px; /* Reduce gaps for smaller viewports */
+    }
+  
+    .calendar-cell {
+      height: 80px; /* Adjust cell height for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .calendar-grid {
+      grid-template-columns: repeat(2, 1fr); /* Adjust to 2 columns on very small screens */
+      gap: 4px; /* Minimize gaps for compact design */
+    }
+  
+    .calendar-cell {
+      height: 60px; /* Adjust cell height for very small screens */
+    }
+  
+    .calendar-cell.today {
+      font-size: 0.9rem; /* Scale text down for smaller cells */
+    }
   }
   

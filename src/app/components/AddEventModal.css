@@ -1,86 +1,118 @@
-/* Add event modal Actions */
-.form-group{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .form-group-day,.form-group-year,.form-group-month{
-    padding: 16px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .modal-add-event {
+/* AddEventModal.css */
+
+.modal-add-event {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch; /* Ensure elements stretch to fill the modal */
+    justify-content: space-evenly; /* Evenly distribute space between elements */
+    background-color: #ffffff;
+    color: #003880;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 50%;
-    padding-bottom: 50px;
-  }
-  
-  .modal-add-event input,
-  .modal-add-event textarea {
-    background-color: #333333;
-    color: white;
-    border: 1px solid #555555;
+    max-width: 600px;
+    min-height: 400px; /* Ensure minimum height for larger content */
+    padding: 20px; /* Add padding for consistent spacing */
+    box-sizing: border-box; /* Include padding in dimensions */
+}
+
+.form-group, .form-group-day, .form-group-month, .form-group-year {
+    display: flex;
+    margin-bottom: 24px;
+    flex-direction: column;
+    gap: 12px; /* Increase gap for better readability */
+    width: 100%; /* Ensure elements fill the modal's width */
+    color: #333;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    color: #333;
     padding: 10px;
-    border-radius: 5px;
     font-size: 1rem;
-    width: 100;
-    margin-bottom: 15px;
-  }
-  
-  select {
-    padding: 8px;
+    border: 1px solid #e3e3e3;
     border-radius: 5px;
-    background-color: rgb(226, 226, 226);
-  }
-  
-  
-  .modal-btn-add-event {
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 fill%3D%22%23fff%22 viewBox%3D%220 0 24 24%22 stroke-width%3D%220%22%3E%3Cpath d%3D%22M7.41%208.84%20L12%2013.41%2016.59%208.84%2018%2010.25%2012%2016.25%206%2010.25z%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+
+input, .modal-btn-add-event {
+    width: 100%; /* Full width of the modal */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: rgb(72, 72, 72);
+    box-sizing: border-box; /* Include padding in dimensions */
+}
+
+textarea {
+    width: 100%;
+    height: 80px; /* Ensure consistent height for multiline input */
+    resize: none; /* Prevent resizing to maintain layout */
+}
+
+.modal-btn-add-event {
+    background-color: #003880;
     color: white;
-    align-self: center;
-    border: 1px solid;
-    padding: 10px 20px;
-    font-size: 1rem;
+    border: 1px solid #0051bc;
     cursor: pointer;
     border-radius: 24px;
-    border-color: #0051bc;
-    margin-top: 10px;
     transition: background-color 0.3s ease;
-    background-color: #003880; /* Green for Add/Save */
-    width: 100%;
-  }
-  
-  .modal-btn-add-event:hover {
-    background-color: #01224d; /* Darker green on hover */
-  }
-  
-  .modal-btn-close-modal {
+    margin: 16px 0px;
+}
+
+.modal-btn-add-event:hover {
+    background-color: #01224d;
+}
+
+.modal-btn-close-modal {
     position: absolute;
     top: 10px;
     right: 10px;
     background-color: transparent;
-    color: #ffffff;
+    color: #3e3e3e;
     font-size: 1.2rem;
     border: none;
     cursor: pointer;
-  }
-  
-  .modal-btn-close-modal:hover {
-    color: #ff0000; /* Red hover effect */
-  }
-  
-  
-  
+}
+
+.modal-btn-close-modal:hover {
+    color: #ff0000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-add-event {
+        padding: 15px;
+    }
+
+    select, input, textarea, .modal-btn-add-event {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-add-event {
+        padding: 10px;
+    }
+
+    select, input, textarea, .modal-btn-add-event {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}

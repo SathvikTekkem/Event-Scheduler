@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import "./EventModal.css"
+import React, { useState, useEffect } from "react";
+import "./EventModal.css";
 
 interface Event {
   id: string;
@@ -13,7 +13,7 @@ interface EventModalProps {
   newEvent: string;
   setNewEvent: (value: string) => void;
   onAddEvent: () => void;
-  onSaveChanges: () => void; // Add this function for saving changes
+  onSaveChanges: (id: string, updatedDescription: string) => void;
   onClose: () => void;
   onEditEvent: (event: Event) => void;
   onDeleteEvent: (id: string) => void;
@@ -32,40 +32,73 @@ const EventModal: React.FC<EventModalProps> = ({
   onDeleteEvent,
   editingEventId,
 }) => {
+  const [editedDescription, setEditedDescription] = useState("");
+
   const eventsForDay = events.filter((event) => event.date === selectedDate);
 
   useEffect(() => {
-    if (!editingEventId) {
-      setNewEvent(""); // Clear input when no event is being edited
+    if (editingEventId) {
+      const eventToEdit = events.find((event) => event.id === editingEventId);
+      setEditedDescription(eventToEdit ? eventToEdit.description : "");
+    } else {
+      setEditedDescription("");
     }
-  }, [editingEventId, setNewEvent]);
+  }, [editingEventId, events]);
 
-  // Close modal only if clicked outside modal content
   const handleModalClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent click event from closing the modal when interacting with content
+    e.stopPropagation();
   };
 
   const handleClose = () => {
-    onClose(); // Close the modal when clicked on the close button
+    onClose();
+  };
+
+  const handleSaveClick = (id: string) => {
+    onSaveChanges(id, editedDescription);
   };
 
   return (
     <div className="modal" onClick={handleClose}>
-      <div className="modal-content" onClick={handleModalClick}> {/* Prevent closing if clicking inside modal content */}
+      <div className="modal-content" onClick={handleModalClick}>
         <h3>Events for {selectedDate}</h3>
         {eventsForDay.length > 0 ? (
           <ul className="event-list">
             {eventsForDay.map((event) => (
               <li key={event.id} className="event-list-item">
-                <strong>{event.description}</strong>
-                <div className="event-actions">
-                  <button onClick={() => onEditEvent(event)} className="edit-event-button">
-                    Edit
-                  </button>
-                  <button onClick={() => onDeleteEvent(event.id)} className="delete-event-button">
-                    Delete
-                  </button>
-                </div>
+                {editingEventId === event.id ? (
+                  <>
+                    <input
+                      type="text"
+                      value={editedDescription}
+                      onChange={(e) => setEditedDescription(e.target.value)}
+                      className="edit-input"
+                    />
+                    <button
+                      onClick={() => handleSaveClick(event.id)}
+                      className="save-event-button"
+                    >
+                      Save
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <strong>{event.description}</strong>
+                    <div className="event-actions">
+                      <button
+                        onClick={() => onEditEvent(event)}
+                        className="edit-event-button"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => onDeleteEvent(event.id)}
+                        className="delete-event-button"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </>
+                )}
               </li>
             ))}
           </ul>
@@ -78,7 +111,10 @@ const EventModal: React.FC<EventModalProps> = ({
           onChange={(e) => setNewEvent(e.target.value)}
           placeholder="Event description"
         />
-        <button className="modal-btn add-event-btn" onClick={editingEventId ? onSaveChanges : onAddEvent}>
+        <button
+          className="modal-btn add-event-btn"
+          onClick={editingEventId ? undefined : onAddEvent}
+        >
           {editingEventId ? "Save Changes" : "Add Event"}
         </button>
         <button className="modal-btn close-modal-btn" onClick={handleClose}>
