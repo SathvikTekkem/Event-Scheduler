@@ -29,4 +29,4 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   );
 };
 
-export default CalendarHeader;
+export default React.memo(CalendarHeader);

@@ -60,4 +60,4 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ date, events, onDateClick }
   return <div className="calendar-grid">{days}</div>;
 };
 
-export default CalendarGrid;
+export default React.memo(CalendarGrid);

@@ -153,4 +153,4 @@ const Calendar: React.FC = () => {
   );
 };
 
-export default Calendar;
+export default React.memo(Calendar);

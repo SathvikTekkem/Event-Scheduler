@@ -96,9 +96,7 @@ const EventModal: React.FC<EventModalProps> = ({
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Input for adding/editing events */}
+          {/* Input for adding/editing events */}
         <input
           type="text"
           value={editingEventId ? editedDescription : newEvent}
@@ -111,7 +109,7 @@ const EventModal: React.FC<EventModalProps> = ({
             editingEventId ? "Edit event description" : "Add event description"
           }
         />
-
+        </div>
         {/* Conditionally rendering Add/Save button */}
         <div className="button-group">
           {editingEventId ? (
@@ -142,4 +140,4 @@ const EventModal: React.FC<EventModalProps> = ({
   );
 };
 
-export default EventModal;
+export default React.memo(EventModal);

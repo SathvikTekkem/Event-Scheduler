@@ -144,4 +144,4 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
   );
 };
 
-export default AddEventModal;
+export default React.memo(AddEventModal);
