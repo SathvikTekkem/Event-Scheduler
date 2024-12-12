@@ -1,24 +1,9 @@
 import React from "react";
+import { AddEventModalProps } from "@/pages/interfaces";
 import styles from "../styles/AddEventModal.module.css"
 
 
 
-interface AddEventModalProps {
-  addEventDate: {
-    day: number;
-    month: number;
-    year: number;
-  };
-  setAddEventDate: React.Dispatch<React.SetStateAction<{
-    day: number;
-    month: number;
-    year: number;
-  }>>;
-  addEventDescription: string;
-  setAddEventDescription: React.Dispatch<React.SetStateAction<string>>;
-  onSubmit: () => void;
-  onClose: () => void;
-}
 
 const AddEventModal: React.FC<AddEventModalProps> = ({
   addEventDate,

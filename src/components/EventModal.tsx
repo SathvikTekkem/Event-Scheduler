@@ -1,24 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/EventModal.module.css"
+import { Event, EventModalProps} from "@/pages/interfaces";
 
-interface Event {
-  id: string;
-  date: string; // e.g., "2024-12-12"
-  description: string;
-}
-
-interface EventModalProps {
-  selectedDate: string;
-  events: Event[];
-  newEvent: string;
-  setNewEvent: React.Dispatch<React.SetStateAction<string>>;
-  onAddEvent: () => void;
-  onSaveChanges: (id: string, updatedDescription: string) => void;
-  onClose: () => void;
-  onEditEvent: (event: Event) => void;
-  onDeleteEvent: (id: string) => void;
-  editingEventId: string | null;
-}
 
 const EventModal: React.FC<EventModalProps> = ({
   selectedDate,

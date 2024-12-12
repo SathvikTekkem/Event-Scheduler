@@ -1,17 +1,16 @@
 import React from "react";
-import styles from "../styles/CalendarGrid.module.css"
+import { Event, CalendarGridProps } from "@/pages/interfaces";
+import styles from "../styles/CalendarGrid.module.css";
 
-interface Event {
-  id: string;
-  date: string;
-  description: string;
-}
 
-interface CalendarGridProps {
-  date: Date;
-  events: Event[];
-  onDateClick: (formattedDate: string) => void; // Expecting a string
-}
+// Helper function to get the current date in UTC
+const getTodayUTC = (): string => {
+  const now = new Date();
+  const year = now.getUTCFullYear();
+  const month = (now.getUTCMonth() + 1).toString().padStart(2, "0");
+  const day = now.getUTCDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
 
 const getDateWithoutTime = (date: Date): string => {
   const year = date.getFullYear();
@@ -25,8 +24,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ date, events, onDateClick }
   const firstDayIndex = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   const days = [];
 
-  const currentDate = new Date();
-  const currentDayFormatted = getDateWithoutTime(currentDate);
+  const currentDayFormatted = getTodayUTC(); 
 
   // Adding empty cells for the first week (before the first day of the month)
   for (let i = 0; i < firstDayIndex; i++) {
@@ -45,7 +43,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ date, events, onDateClick }
       <div
         key={`day-${i}`}
         className={`${styles["calendar-cell"]} ${styles[isToday ? "today" : ""]}`}
-        onClick={() => onDateClick(currentDateFormatted)}  // Pass the formatted date
+        onClick={() => onDateClick(currentDateFormatted)}  // Passing the formatted date
       >
         <span>{i}</span>
         {eventCount > 0 && (

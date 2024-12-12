@@ -5,7 +5,9 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "dependencies": {
         "@types/react": "^19.0.1",
@@ -20,5 +22,6 @@
         "gh-pages": "^6.2.0",
         "postcss": "^8.4.49",
         "typescript": "^5.7.2"
-    }
+    },
+    "homepage": "https://sathviktekkem.github.io/eventscheduler"
 }

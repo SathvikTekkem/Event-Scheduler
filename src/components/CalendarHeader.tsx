@@ -1,13 +1,6 @@
 import React from "react";
+import { CalendarHeaderProps } from "@/pages/interfaces";
 import styles from "../styles/CalendarHeader.module.css"
-
-interface CalendarHeaderProps {
-  date: Date;
-  onPrevMonth: () => void;
-  onNextMonth: () => void;
-  onPrevYear: () => void;
-  onNextYear: () => void;
-}
 
 const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   date,

@@ -1,16 +1,13 @@
 "use client";
 import React, { useState } from "react";
+import { Event } from "@/pages/interfaces";
 import CalendarHeader from "./CalendarHeader";
 import CalendarGrid from "./CalendarGrid";
 import EventModal from "./EventModal";
 import AddEventModal from "./AddEventModal";
 import styles from "../styles/Calendar.module.css"
 
-interface Event {
-  id: string;
-  date: string; // e.g., "2024-12-12"
-  description: string;
-}
+
 
 const Calendar: React.FC = () => {
   const [date, setDate] = useState(new Date());
